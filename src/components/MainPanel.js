@@ -8,11 +8,11 @@ import ReactFlow, {
   updateEdge,
   Background,
   MiniMap,
-  SmoothStepEdge,
 } from 'react-flow-renderer'
+import CircleNode from '../customNodes/CircleNode'
 import WhenOtherwise from '../customNodes/WhenOtherwise'
 
-const nodeTypes = { whenOtherwise: WhenOtherwise };
+const nodeTypes = { whenOtherwise: WhenOtherwise, circle: CircleNode };
 
 const initialNodes = [
   {
@@ -83,7 +83,7 @@ const MainPanel = () => {
         position,
         targetPosition: 'left',
         sourcePosition: 'right',
-        data: { label: `${type} node` },
+        data: { label: `${type}`},
       }
 
       setNodes((nds) => nds.concat(newNode))

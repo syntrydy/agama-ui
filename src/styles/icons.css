@@ -1,27 +1,43 @@
 .repeat {
     background-image: url("../images/repeat.png");
-    background-size: 100px 100px;
-    height: 100px;
-    width: 100px;
+    background-size: 80px 80px;
+    height: 80px;
+    width: 80px;
+    margin-left: 10px;
 }
 
 .start {
     background-image: url("../images/start.png");
-    background-size: 100px 100px;
-    height: 100px;
-    width: 100px;
+    background-size: 80px 80px;
+    height: 80px;
+    width: 80px;
+    margin-left: 10px;
+}
+
+.circle {
+    background: #58dd6a;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    /* display: flex; */
+    padding-top: 28px;
+    align-items: center;
+    text-align: center;
+    margin-left: 10px;
 }
 
 .finish {
     background-image: url("../images/end.png");
-    background-size: 100px 100px;
-    height: 100px;
-    width: 100px;
+    background-size: 80px 80px;
+    height: 80px;
+    width: 80px;
+    margin-left: 10px;
 }
 
 .when {
     background-image: url("../images/when.png");
-    background-size: 100px 100px;
-    height: 100px;
-    width: 100px;
+    background-size: 80px 80px;
+    height: 80px;
+    width: 80px;
+    margin-left: 10px;
 }

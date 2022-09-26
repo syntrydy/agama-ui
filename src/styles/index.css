@@ -24,10 +24,12 @@ code {
   padding: 15px 10px;
   font-size: 12px;
   background: #fcfcfc;
+  margin-left: 10px;
 }
 
-.aside .description {
+.description {
   margin-bottom: 10px;
+  margin-left: 10px;
 }
 
 .dndnode {
