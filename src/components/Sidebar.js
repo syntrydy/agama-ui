@@ -18,7 +18,6 @@ const Sidebar = () => {
         onDragStart={(event) => onDragStart(event, 'input')}
         draggable
       >
-        Repeat Node
       </div>
 
       <div
@@ -26,7 +25,6 @@ const Sidebar = () => {
         onDragStart={(event) => onDragStart(event, 'input')}
         draggable
       >
-        Start Node
       </div>
 
       <div
@@ -34,7 +32,6 @@ const Sidebar = () => {
         onDragStart={(event) => onDragStart(event, 'output')}
         draggable
       >
-        Finish Node
       </div>
 
       <div
@@ -42,7 +39,6 @@ const Sidebar = () => {
         onDragStart={(event) => onDragStart(event, 'whenOtherwise')}
         draggable
       >
-        When Node
       </div>
     </aside>
   )
