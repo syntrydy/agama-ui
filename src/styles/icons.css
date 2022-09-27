@@ -1,43 +1,69 @@
 .repeat {
-    background-image: url("../images/repeat.png");
-    background-size: 80px 80px;
-    height: 80px;
-    width: 80px;
-    margin-left: 10px;
+  background-image: url("../images/repeat.png");
+  background-size: 80px 80px;
+  height: 80px;
+  width: 80px;
+  margin-top: 20px;
+  margin-left: 10px;
 }
 
 .start {
-    background-image: url("../images/start.png");
-    background-size: 80px 80px;
-    height: 80px;
-    width: 80px;
-    margin-left: 10px;
+  background-image: url("../images/start.png");
+  background-size: 80px 80px;
+  height: 80px;
+  width: 80px;
+  margin-left: 10px;
 }
 
 .circle {
-    background: #58dd6a;
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    /* display: flex; */
-    padding-top: 28px;
-    align-items: center;
-    text-align: center;
-    margin-left: 10px;
+  background: #58dd6a;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  /* display: flex; */
+  padding-top: 28px;
+  align-items: center;
+  text-align: center;
+  margin-left: 10px;
+}
+.diamond {
+  transform: rotate(-45deg);
+  width: 80px;
+  height: 80px;
+  border: 2px solid rgb(0, 225, 255);
+  overflow: hidden;
+}
+
+.diamond-text {
+  transform: rotate(45deg);
+}
+
+.dndnode.diamond {
+  margin: 20px;
+}
+
+.action {
+  background: rgb(224, 79, 79);
+  width: 80px;
+  height: 50px;
+  align-items: center;
+  text-align: center;
+  padding: 12px;
+  margin: 10px;
 }
 
 .finish {
-    background-image: url("../images/end.png");
-    background-size: 80px 80px;
-    height: 80px;
-    width: 80px;
-    margin-left: 10px;
+  background-image: url("../images/end.png");
+  background-size: 80px 80px;
+  height: 80px;
+  width: 80px;
+  margin-left: 10px;
 }
 
 .when {
-    background-image: url("../images/when.png");
-    background-size: 80px 80px;
-    height: 80px;
-    width: 80px;
-    margin-left: 10px;
+  background-image: url("../images/when.png");
+  background-size: 80px 80px;
+  height: 80px;
+  width: 80px;
+  margin-left: 10px;
 }

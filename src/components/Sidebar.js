@@ -32,6 +32,14 @@ const Sidebar = () => {
       ></div>
 
       <div
+        className="dndnode diamond"
+        onDragStart={(event) => onDragStart(event, 'condition')}
+        draggable
+      >
+        <div className="diamond-text">Condition</div>
+      </div>
+
+      <div
         className="dndnode when"
         onDragStart={(event) => onDragStart(event, 'whenOtherwise')}
         draggable
@@ -43,6 +51,14 @@ const Sidebar = () => {
         draggable
       >
         Circle
+      </div>
+
+      <div
+        className="action"
+        onDragStart={(event) => onDragStart(event, 'action')}
+        draggable
+      >
+        Action
       </div>
     </aside>
   )

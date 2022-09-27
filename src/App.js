@@ -12,7 +12,7 @@ function App() {
       <Header />
       <Grid container component="main" sx={{ height: '100vh' }}>
         <CssBaseline />
-        <Grid item xs={false} sm={2} md={3} component={Paper} elevation={6} square>
+        <Grid item xs={false} sm={1} md={2} component={Paper} elevation={6} square>
           <Sidebar />
         </Grid >
         <MainPanel />

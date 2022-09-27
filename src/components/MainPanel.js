@@ -9,10 +9,17 @@ import ReactFlow, {
   Background,
   MiniMap,
 } from 'react-flow-renderer'
+import ActionNode from '../customNodes/ActionNode'
 import CircleNode from '../customNodes/CircleNode'
+import DiamondNode from '../customNodes/DiamondNode'
 import WhenOtherwise from '../customNodes/WhenOtherwise'
 
-const nodeTypes = { whenOtherwise: WhenOtherwise, circle: CircleNode };
+const nodeTypes = {
+  whenOtherwise: WhenOtherwise,
+  circle: CircleNode,
+  condition: DiamondNode,
+  action: ActionNode,
+}
 
 const initialNodes = [
   {
@@ -83,7 +90,7 @@ const MainPanel = () => {
         position,
         targetPosition: 'left',
         sourcePosition: 'right',
-        data: { label: `${type}`},
+        data: { label: `${type}` },
       }
 
       setNodes((nds) => nds.concat(newNode))
@@ -113,7 +120,19 @@ const MainPanel = () => {
           >
             <Controls />
             <Background />
-            <MiniMap />
+            <MiniMap 
+            nodeStrokeColor={(n) => {
+              if (n.type === "input") return "#0041d0";
+              if (n.type === "circle") return "#58dd6a";
+              if (n.type === "output") return "#ff0072";
+              if (n.type === "condition") return "rgb(0, 225, 255)";
+            }}
+            nodeColor={(n) => {
+              if (n.type === "action") return "rgb(224, 79, 79)";
+              if (n.type === "whenOtherwise") return "rgb(79, 125, 224)";
+              return "#fff";
+            }}
+            />
           </ReactFlow>
         </div>
       </ReactFlowProvider>
