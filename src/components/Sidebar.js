@@ -40,6 +40,14 @@ const Sidebar = () => {
       </div>
 
       <div
+        className="subflow-item"
+        onDragStart={(event) => onDragStart(event, 'subflow')}
+        draggable
+      >
+        Subflow
+      </div>
+
+      <div
         className="dndnode when"
         onDragStart={(event) => onDragStart(event, 'whenOtherwise')}
         draggable

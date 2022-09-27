@@ -52,6 +52,18 @@
   margin: 10px;
 }
 
+.subflow-item {
+  background: #ffffff;
+  width: 80px;
+  height: 80px;
+  border: 2px solid rgb(161, 247, 150);
+  padding-top: 28px;
+  align-items: center;
+  text-align: center;
+  margin-left: 10px;
+  margin-bottom: 10px;
+}
+
 .finish {
   background-image: url("../images/end.png");
   background-size: 80px 80px;

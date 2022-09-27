@@ -1,20 +1,16 @@
 import React, { useCallback } from 'react'
 import { Handle } from 'react-flow-renderer'
-import '../styles/index.css';
+import '../styles/index.css'
 
 const DiamondNode = ({ data }) => {
-  const onChange = useCallback((evt) => {
-    console.log(evt.target.value);
-  }, []);
-
   function testCondition() {
     try {
-      const input = document.getElementById("condition").value
-      const result = eval(input);
-      console.log(result);
-      return result;
+      const input = document.getElementById('condition').value
+      const result = eval(input)
+      console.log(result)
+      return result
     } catch (error) {
-      return error;
+      return error
     }
   }
 
@@ -38,7 +34,7 @@ const DiamondNode = ({ data }) => {
         }}
         id={data.id}
       >
-        {data.label}
+        condition
       </div>
       <div className="condition">
         <input id="condition" name="condition" onChange={testCondition} />

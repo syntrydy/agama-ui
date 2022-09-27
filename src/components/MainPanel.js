@@ -12,6 +12,7 @@ import ReactFlow, {
 import ActionNode from '../customNodes/ActionNode'
 import CircleNode from '../customNodes/CircleNode'
 import DiamondNode from '../customNodes/DiamondNode'
+import SubFlow from '../customNodes/SubFlow'
 import WhenOtherwise from '../customNodes/WhenOtherwise'
 
 const nodeTypes = {
@@ -19,6 +20,7 @@ const nodeTypes = {
   circle: CircleNode,
   condition: DiamondNode,
   action: ActionNode,
+  subflow: SubFlow,
 }
 
 const initialNodes = [
@@ -84,16 +86,71 @@ const MainPanel = () => {
         x: event.clientX - reactFlowBounds.left,
         y: event.clientY - reactFlowBounds.top,
       })
-      const newNode = {
-        id: getId(),
-        type,
-        position,
-        targetPosition: 'left',
-        sourcePosition: 'right',
-        data: { label: `${type}` },
-      }
 
-      setNodes((nds) => nds.concat(newNode))
+      if (type === 'subflow') {
+        const id = getId()
+        const pNode = {
+          id: id,
+          type,
+          position: { x: 0, y: 0 },
+          targetPosition: 'left',
+          sourcePosition: 'right',
+          data: { label: "When-Otherwise" },
+        }
+        const conditionId = getId()
+        const conditionNode = {
+          id: conditionId,
+          type: 'condition',
+          position: { x: 20, y: 80 },
+          parentNode: id,
+          extent: 'parent',
+          targetPosition: 'left',
+          sourcePosition: 'right',
+          data: { label: `${type}` },
+        }
+        const actionOneId = getId()
+        const actionOne = {
+          id: actionOneId,
+          type: 'action',
+          position: { x: 130, y: 30 },
+          parentNode: id,
+          extent: 'parent',
+          targetPosition: 'left',
+          sourcePosition: 'right',
+          data: { label: `${type}` },
+        }
+        const actionTwoId = getId()
+        const actionTwo = {
+          id: actionTwoId,
+          type: 'action',
+          position: { x: 130, y: 120 },
+          parentNode: id,
+          extent: 'parent',
+          targetPosition: 'left',
+          sourcePosition: 'right',
+          data: { label: `${type}` },
+        }
+        const edges = [
+          { id: 'condition-action1', source: conditionId, target: actionOneId },
+          { id: 'condition-action2', source: conditionId, target: actionTwoId },
+        ]
+        setNodes((nds) => nds.concat(pNode))
+        setNodes((nds) => nds.concat(conditionNode))
+        setNodes((nds) => nds.concat(actionOne))
+        setNodes((nds) => nds.concat(actionTwo))
+        setEdges((eds) => eds.concat(edges[0]))
+        setEdges((eds) => eds.concat(edges[1]))
+      } else {
+        const newNode = {
+          id: getId(),
+          type,
+          position,
+          targetPosition: 'left',
+          sourcePosition: 'right',
+          data: { label: `${type}` },
+        }
+        setNodes((nds) => nds.concat(newNode))
+      }
     },
     [reactFlowInstance],
   )
@@ -120,18 +177,18 @@ const MainPanel = () => {
           >
             <Controls />
             <Background />
-            <MiniMap 
-            nodeStrokeColor={(n) => {
-              if (n.type === "input") return "#0041d0";
-              if (n.type === "circle") return "#58dd6a";
-              if (n.type === "output") return "#ff0072";
-              if (n.type === "condition") return "rgb(0, 225, 255)";
-            }}
-            nodeColor={(n) => {
-              if (n.type === "action") return "rgb(224, 79, 79)";
-              if (n.type === "whenOtherwise") return "rgb(79, 125, 224)";
-              return "#fff";
-            }}
+            <MiniMap
+              nodeStrokeColor={(n) => {
+                if (n.type === 'input') return '#0041d0'
+                if (n.type === 'circle') return '#58dd6a'
+                if (n.type === 'output') return '#ff0072'
+                if (n.type === 'condition') return 'rgb(0, 225, 255)'
+              }}
+              nodeColor={(n) => {
+                if (n.type === 'action') return 'rgb(224, 79, 79)'
+                if (n.type === 'whenOtherwise') return 'rgb(79, 125, 224)'
+                return '#fff'
+              }}
             />
           </ReactFlow>
         </div>

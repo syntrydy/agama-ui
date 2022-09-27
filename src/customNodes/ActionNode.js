@@ -10,13 +10,12 @@ function ActionNode({ data }) {
 
   return (
     <div className="action-node">
-      <Handle type="target" position={Position.Top} />
+      <Handle type="source" position={Position.Right} />
       <div>
         <label htmlFor="action">Action</label>
         <input id="action" name="action" onChange={onChange} />
       </div>
-      <Handle type="source" position={Position.Right} id={`${data.id}.righta`} style={handleStyle} />
-      <Handle type="source" position={Position.Right} id={`${data.id}.rightb`} />
+      <Handle type="target" position={Position.Left} id={`${data.id}.righta`} style={handleStyle} />
     </div>
   );
 }
