@@ -9,7 +9,7 @@ function ActionNode({ data }) {
   }, []);
 
   return (
-    <div className="action-node">
+    <div className="action-node" style={{backgroundColor: data.color}}>
       <Handle type="source" position={Position.Right} />
       <div>
         <label htmlFor="action">Action</label>

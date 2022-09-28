@@ -8,9 +8,11 @@ import ReactFlow, {
   updateEdge,
   Background,
   MiniMap,
+  useReactFlow,
 } from 'react-flow-renderer'
 import ActionNode from '../customNodes/ActionNode'
 import CircleNode from '../customNodes/CircleNode'
+import DataNode from '../customNodes/DataNode'
 import DiamondNode from '../customNodes/DiamondNode'
 import SubFlow from '../customNodes/SubFlow'
 import WhenOtherwise from '../customNodes/WhenOtherwise'
@@ -21,20 +23,15 @@ const nodeTypes = {
   condition: DiamondNode,
   action: ActionNode,
   subflow: SubFlow,
+  data: DataNode,
 }
 
-const initialNodes = [
-  {
-    id: '1',
-    type: 'input',
-    sourcePosition: 'right',
-    data: { label: 'Start Flow' },
-    position: { x: 250, y: 5 },
-  },
-]
+const initialNodes = []
 
 let id = 0
 const getId = () => `dndnode_${id++}`
+
+//const reactFlowInstance = useReactFlow()
 
 const MainPanel = () => {
   const reactFlowWrapper = useRef(null)
@@ -60,10 +57,19 @@ const MainPanel = () => {
     edgeUpdateSuccessful.current = true
   }, [])
 
-  const onConnect = useCallback(
-    (params) => setEdges((eds) => addEdge(params, eds)),
-    [],
-  )
+  
+
+  const onConnect = useCallback((params) => {
+    setEdges((eds) => addEdge(params, eds))
+    let sourceId = params.source
+    let targetId = params.target
+    let source = nodes.filter(n => n.id === sourceId)
+    let allNodes = nodes.filter((n) => n.id)
+    const nodes =  reactFlowInstance.getNodes()
+    //console.log('=====nodes======' +JSON.stringify(nodes))
+    // console.log('======nodes=====' +JSON.stringify(nodes))
+   
+  }, [])
 
   const onDragOver = useCallback((event) => {
     event.preventDefault()
@@ -81,7 +87,7 @@ const MainPanel = () => {
       if (typeof type === 'undefined' || !type) {
         return
       }
-
+      
       const position = reactFlowInstance.project({
         x: event.clientX - reactFlowBounds.left,
         y: event.clientY - reactFlowBounds.top,
@@ -92,10 +98,10 @@ const MainPanel = () => {
         const pNode = {
           id: id,
           type,
-          position: { x: 0, y: 0 },
+          position: { x: 300, y: 5 },
           targetPosition: 'left',
           sourcePosition: 'right',
-          data: { label: "When-Otherwise" },
+          data: { label: 'When-Otherwise' },
         }
         const conditionId = getId()
         const conditionNode = {
@@ -106,7 +112,7 @@ const MainPanel = () => {
           extent: 'parent',
           targetPosition: 'left',
           sourcePosition: 'right',
-          data: { label: `${type}` },
+          data: { label: `${type}`, inputData: '' },
         }
         const actionOneId = getId()
         const actionOne = {
@@ -117,7 +123,7 @@ const MainPanel = () => {
           extent: 'parent',
           targetPosition: 'left',
           sourcePosition: 'right',
-          data: { label: `${type}` },
+          data: { label: `${type}`, color: '#7be76d' },
         }
         const actionTwoId = getId()
         const actionTwo = {
@@ -140,6 +146,26 @@ const MainPanel = () => {
         setNodes((nds) => nds.concat(actionTwo))
         setEdges((eds) => eds.concat(edges[0]))
         setEdges((eds) => eds.concat(edges[1]))
+      } else if (type === 'data') {
+        const newNode = {
+          id: 'data-' + getId(),
+          type,
+          position,
+          targetPosition: 'left',
+          sourcePosition: 'right',
+          data: { label: `${type}` },
+        }
+        setNodes((nds) => nds.concat(newNode))
+      } else if (type === 'circle') {
+        const newNode = {
+          id: 'circle-' + getId(),
+          type,
+          position,
+          targetPosition: 'left',
+          sourcePosition: 'right',
+          data: { label: `${type}` },
+        }
+        setNodes((nds) => nds.concat(newNode))
       } else {
         const newNode = {
           id: getId(),
@@ -150,6 +176,7 @@ const MainPanel = () => {
           data: { label: `${type}` },
         }
         setNodes((nds) => nds.concat(newNode))
+        
       }
     },
     [reactFlowInstance],
@@ -157,7 +184,6 @@ const MainPanel = () => {
 
   return (
     <div className="dndflow">
-      <ReactFlowProvider>
         <div className="reactflow-wrapper" ref={reactFlowWrapper}>
           <ReactFlow
             nodes={nodes}
@@ -192,7 +218,6 @@ const MainPanel = () => {
             />
           </ReactFlow>
         </div>
-      </ReactFlowProvider>
     </div>
   )
 }
