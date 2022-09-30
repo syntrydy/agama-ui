@@ -5,6 +5,7 @@ import CssBaseline from '@mui/material/CssBaseline'
 import Header from './components/Header'
 import MainPanel from './components/MainPanel'
 import Sidebar from './components/Sidebar'
+import { ReactFlowProvider } from 'react-flow-renderer'
 
 function App() {
   return (
@@ -12,10 +13,20 @@ function App() {
       <Header />
       <Grid container component="main" sx={{ height: '100vh' }}>
         <CssBaseline />
-        <Grid item xs={false} sm={1} md={2} component={Paper} elevation={6} square>
+        <Grid
+          item
+          xs={false}
+          sm={1}
+          md={2}
+          component={Paper}
+          elevation={6}
+          square
+        >
           <Sidebar />
-        </Grid >
-        <MainPanel />
+        </Grid>
+        <ReactFlowProvider>
+          <MainPanel />
+        </ReactFlowProvider>
       </Grid>
     </div>
   )

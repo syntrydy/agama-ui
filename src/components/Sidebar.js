@@ -19,7 +19,7 @@ const Sidebar = () => {
         onDragStart={(event) => onDragStart(event, 'subflow')}
         draggable
       >
-        Subflow
+        WoWISE
       </div>
 
       <div
