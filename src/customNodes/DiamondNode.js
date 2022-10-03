@@ -1,14 +1,27 @@
-import React, { useCallback } from 'react'
+import { Button } from '@mui/material'
+import React, { useState } from 'react'
 import { Handle } from 'react-flow-renderer'
+import { connect } from 'react-redux'
 import '../styles/index.css'
 
-const DiamondNode = ({ data }) => {
-  function testCondition() {
+const DiamondNode = ({ data, agamadata }) => {
+
+  const [sourceId, setstate] = useState(data.agamasource)
+  function getNodeById(nodeId) {
+    let result = agamadata.filter((nds) => nds.id === nodeId)
+    let size = result.length
+    if (size > 0) {
+      return result[size - 1].agamadata
+    }
+    return '-'
+  }
+
+  function testEval() {
     try {
-      const input = document.getElementById('condition').value
-      const result = eval(input)
+      const data = getNodeById(sourceId)
+      const result = data > 10 ? "Pass" : "Fail"
+      //return result
       console.log(result)
-      return result
     } catch (error) {
       return error
     }
@@ -34,11 +47,12 @@ const DiamondNode = ({ data }) => {
         }}
         id={data.id}
       >
-        condition
+        {getNodeById(sourceId)}
       </div>
       <div className="condition">
-        <input id="condition" name="condition" onChange={testCondition} />
+        <input id="condition" name="condition"/>
       </div>
+      <Button variant="contained" onClick={testEval}>Eval</Button>
       <Handle
         type="source"
         position="right"
@@ -55,4 +69,12 @@ const DiamondNode = ({ data }) => {
   )
 }
 
-export default DiamondNode
+const mapDispatch = (dispatch) => ({
+  setNodeData: (payload) => dispatch.flowModel.addNodeData(payload),
+})
+
+const mapState = (state) => ({
+  agamadata: state.flowModel.nodes,
+})
+
+export default connect(mapState, mapDispatch)(DiamondNode)
