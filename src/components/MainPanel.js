@@ -26,6 +26,18 @@ const nodeTypes = {
   data: DataNode,
 }
 
+let evalResult = true
+let animateEdgeOne = false
+let animateEdgeTwo = false
+
+if (evalResult === true) {
+  // animateEdgeOne = true
+  animateEdgeTwo = false
+} else {
+  // animateEdgeTwo = true
+  animateEdgeOne = false
+}
+
 let id = 0
 const getId = () => `dndnode_${id++}`
 const MainPanel = () => {
@@ -51,7 +63,6 @@ const MainPanel = () => {
     edgeUpdateSuccessful.current = true
   }, [])
 
-
   const onConnect = useCallback((params) => {
     const currentNodes = flowInstance.getNodes()
     setEdges((eds) => addEdge(params, eds))
@@ -59,19 +70,16 @@ const MainPanel = () => {
     let targetId = params.target
     let source = currentNodes.filter((n) => n.id === sourceId)
     let target = currentNodes.filter((n) => n.id === targetId)
-    let newTarget = {...target[0]}
-    newTarget.data = {...newTarget.data, agamasource: source[0].data.id }
-    // console.log('===========target2' + JSON.stringify(newTarget))
+    let newTarget = { ...target[0] }
+    newTarget.data = { ...newTarget.data, agamasource: source[0].data.id }
     setNodes((nds) =>
-    nds.map((node) => {
-      if (node.id === targetId) {
-        console.log('===========' + JSON.stringify(newTarget.data))
-        node.data = newTarget.data
-      }
-      console.log('=====t data======' + JSON.stringify(node))
-      return node;
-    })
-  );
+      nds.map((node) => {
+        if (node.id === targetId) {
+          node.data = newTarget.data
+        }
+        return node
+      }),
+    )
   }, [])
 
   const onDragOver = useCallback((event) => {
@@ -94,52 +102,61 @@ const MainPanel = () => {
       })
 
       if (type === 'subflow') {
-        const id = getId()
+        const parentId = 'WOD' + getId()
         const pNode = {
-          id: id,
+          id: parentId,
           type,
           position: { x: 300, y: 5 },
           targetPosition: 'left',
           sourcePosition: 'right',
           data: { label: 'When-Otherwise' },
         }
-        const conditionId = getId()
+        const conditionId = `${parentId}_CONDITION-${getId()}`
         const conditionNode = {
           id: conditionId,
           type: 'condition',
           position: { x: 20, y: 80 },
-          parentNode: id,
+          parentNode: parentId,
           extent: 'parent',
           targetPosition: 'left',
           sourcePosition: 'right',
-          data: { label: `${type}` },
+          data: { id: conditionId, label: `${type}` },
         }
-        const actionOneId = getId()
+        const actionOneId = `${parentId}_TRIGGER-${getId()}-SUCCESS`
         const actionOne = {
           id: actionOneId,
           type: 'action',
           position: { x: 130, y: 30 },
-          parentNode: id,
+          parentNode: parentId,
           extent: 'parent',
           targetPosition: 'left',
           sourcePosition: 'right',
           data: { label: `${type}`, color: '#7be76d' },
         }
-        const actionTwoId = getId()
+        const actionTwoId = `${parentId}_TRIGGER-${getId()}-FAILURE`
         const actionTwo = {
           id: actionTwoId,
           type: 'action',
           position: { x: 130, y: 120 },
-          parentNode: id,
+          parentNode: parentId,
           extent: 'parent',
           targetPosition: 'left',
           sourcePosition: 'right',
           data: { label: `${type}` },
         }
         const edges = [
-          { id: 'condition-action1', source: conditionId, target: actionOneId },
-          { id: 'condition-action2', source: conditionId, target: actionTwoId },
+          {
+            id: 'condition-action1',
+            source: conditionId,
+            target: actionOneId,
+          },
+          {
+            id: 'condition-action2',
+            source: conditionId,
+            target: actionTwoId,
+          },
         ]
+        // setEdges((eds) => eds)
         setNodes((nds) => nds.concat(pNode))
         setNodes((nds) => nds.concat(conditionNode))
         setNodes((nds) => nds.concat(actionOne))
@@ -154,7 +171,7 @@ const MainPanel = () => {
           position,
           targetPosition: 'left',
           sourcePosition: 'right',
-          data: { label: `${type}`, id: newNodeId, inputData: '' },
+          data: { label: `${type}`, id: newNodeId },
         }
         setNodes((nds) => nds.concat(newNode))
       } else if (type === 'circle') {

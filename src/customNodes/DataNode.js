@@ -1,17 +1,30 @@
 import { useCallback } from 'react'
-import { Handle, Position } from 'react-flow-renderer'
+import { Handle, useReactFlow, Position } from 'react-flow-renderer'
 import { connect } from 'react-redux'
 import '../styles/index.css'
 const handleStyle = { top: 10 }
 
 function DataNode({ data, setNodeData }) {
+  const flowInstance = useReactFlow()
   const onChange = useCallback((event) => {
     const value = event.target.value
     const nodeId = data.id
     const nodeData = { nodeId: nodeId, agamadata: value }
-    data = { flowData: nodeData }
     setNodeData(nodeData)
+    let shouldAnimate = value !== null && value.length >= 1 ? true : false
+    animateEdge(shouldAnimate, nodeId)
   }, [])
+
+  function animateEdge(animated, nodeId) {
+    flowInstance.setEdges((eds) =>
+      eds.map((edge) => {
+        if (edge.source === nodeId) {
+          edge.animated = animated ? true : false
+        }
+        return edge
+      }),
+    )
+  }
 
   return (
     <div className="data-node">

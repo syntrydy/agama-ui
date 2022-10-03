@@ -1,10 +1,13 @@
 import { Button } from '@mui/material'
 import React, { useState } from 'react'
-import { Handle } from 'react-flow-renderer'
+import { Handle, useReactFlow } from 'react-flow-renderer'
 import { connect } from 'react-redux'
 import '../styles/index.css'
 
 const DiamondNode = ({ data, agamadata }) => {
+  const flowInstance = useReactFlow()
+  const conditionRightId = `${data.id}.right1`
+  const conditionLeftId = `${data.id}.right2`
 
   const [sourceId, setstate] = useState(data.agamasource)
   function getNodeById(nodeId) {
@@ -16,24 +19,41 @@ const DiamondNode = ({ data, agamadata }) => {
     return '-'
   }
 
-  function testEval() {
+  function excecute() {
+    let result = doEvaluate()
+    animateEdges(result)
+  }
+
+  function animateEdges(animated) {
+    flowInstance.setEdges((eds) =>
+      eds.map((edge) => {
+        if (edge.source === data.id && edge.target.endsWith('SUCCESS')) {
+          edge.animated = animated ? true : false
+        }
+        if (edge.source === data.id && edge.target.endsWith('FAILURE')) {
+          edge.animated = animated ? false : true
+        }
+        return edge
+      }),
+    )
+  }
+
+  function doEvaluate() {
     try {
-      const data = getNodeById(sourceId)
-      const result = data > 10 ? "Pass" : "Fail"
-      //return result
-      console.log(result)
+      const inputData = getNodeById(sourceId)
+      const input = document.getElementById('condition').value
+      const evaluation = `${inputData} ${input}`
+      return eval(evaluation)
     } catch (error) {
-      return error
+      return false
     }
   }
 
   return (
     <div
       style={{
-        transform: 'rotate(-45deg)',
         width: '80px',
         height: '80px',
-
         border: '2px solid rgb(0, 225, 255)',
         overflow: 'hidden',
       }}
@@ -41,28 +61,38 @@ const DiamondNode = ({ data, agamadata }) => {
       <Handle type="target" position="left" id={`${data.id}.left`} />
       <div
         style={{
-          transform: 'rotate(45deg)',
           paddingTop: '10px',
           paddingLeft: '17px',
         }}
         id={data.id}
-      >
-        {getNodeById(sourceId)}
-      </div>
+      ></div>
       <div className="condition">
-        <input id="condition" name="condition"/>
+        <input id="condition" name="condition" />
       </div>
-      <Button variant="contained" onClick={testEval}>Eval</Button>
+      <Button
+        variant="contained"
+        style={{
+          fontSize: '10px',
+          maxWidth: '70px',
+          maxHeight: '20px',
+          minWidth: '70px',
+          minHeight: '20px',
+          margin: '2px',
+        }}
+        onClick={excecute}
+      >
+        Evaluate
+      </Button>
       <Handle
         type="source"
         position="right"
-        id={`${data.id}.right1`}
+        id={conditionRightId}
         style={{ top: '40%' }}
       />
       <Handle
         type="source"
         position="right"
-        id={`${data.id}.right2`}
+        id={conditionLeftId}
         style={{ top: '60%' }}
       />
     </div>

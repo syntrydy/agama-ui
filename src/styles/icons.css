@@ -27,7 +27,7 @@
   margin-left: 10px;
 }
 .diamond {
-  transform: rotate(-45deg);
+  /* transform: rotate(-45deg); */
   width: 70px;
   height: 70px;
   border: 2px solid rgb(0, 225, 255);
@@ -36,7 +36,7 @@
 }
 
 .diamond-text {
-  transform: rotate(45deg);
+  /* transform: rotate(45deg); */
   text-align: center;
 }
 
