@@ -16,7 +16,7 @@ function App() {
         <Grid
           item
           xs={false}
-          sm={1}
+          sm={2}
           md={2}
           component={Paper}
           elevation={6}

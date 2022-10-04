@@ -1,42 +1,22 @@
-.repeat {
-  background-image: url("../images/repeat.png");
-  background-size: 80px 80px;
-  height: 80px;
-  width: 80px;
-  margin-top: 20px;
-  margin-left: 10px;
-}
-
-.start {
-  background-image: url("../images/start.png");
-  background-size: 80px 80px;
-  height: 80px;
-  width: 80px;
-  margin-left: 10px;
-}
-
 .circle {
   background: #58dd6a;
-  width: 80px;
-  height: 80px;
+  width: 75px;
+  height: 55px;
   border-radius: 50%;
-  /* display: flex; */
   padding-top: 28px;
   align-items: center;
   text-align: center;
   margin-left: 10px;
 }
 .diamond {
-  /* transform: rotate(-45deg); */
-  width: 70px;
-  height: 70px;
+  width: 75px;
+  height: 55px;
   border: 2px solid rgb(0, 225, 255);
   overflow: hidden;
-  margin-top: 20px;
+  margin-top: 15px;
 }
 
 .diamond-text {
-  /* transform: rotate(45deg); */
   text-align: center;
 }
 
@@ -47,52 +27,84 @@
 
 .action {
   background: rgb(224, 79, 79);
-  width: 80px;
-  height: 50px;
+  width: 75px;
+  height: 55px;
   align-items: center;
   text-align: center;
-  padding: 12px;
+  color: #ffffff;
+  padding: 2px;
   margin-left: 10px;
-  margin-top: 20px;
+  margin-top: 15px;
+}
+
+.basepath-item {
+  background: rgb(255, 255, 255);
+  width: 75px;
+  border: 2px solid rgb(255, 137, 59);
+  height: 55px;
+  align-items: center;
+  text-align: center;
+  padding: 2px;
+  margin-top: 15px;
+  margin-left: 10px;
 }
 
 .data {
   background: rgb(88, 184, 248);
-  width: 80px;
-  height: 50px;
+  width: 75px;
+  height: 55px;
+  color: #ffffff;
   align-items: center;
   text-align: center;
-  padding: 12px;
-  margin-top: 20px;
+  padding: 2px;
+  margin-top: 15px;
   margin-left: 10px;
 }
 
 .subflow-item {
   background: #ffffff;
-  width: 80px;
-  height: 80px;
+  width: 75px;
+  height: 55px;
   border: 2px solid rgb(161, 247, 150);
-  padding-top: 28px;
   align-items: center;
   text-align: center;
+  padding: 2px;
+  margin-top: 15px;
   margin-left: 10px;
-  margin-top: 20px;
-  margin-bottom: 10px;
+}
+
+.call {
+  background: rgb(255, 255, 255);
+  width: 75px;
+  border: 2px solid rgb(185, 50, 212);
+  height: 55px;
+  align-items: center;
+  text-align: center;
+  padding: 2px;
+  margin-top: 15px;
+  margin-left: 10px;
 }
 
 .finish {
-  background-image: url("../images/end.png");
-  background-size: 80px 80px;
-  height: 80px;
-  width: 80px;
+  background: rgb(255, 255, 255);
+  width: 75px;
+  border: 2px solid rgb(98, 54, 243);
+  height: 55px;
+  align-items: center;
+  text-align: center;
+  padding: 2px;
+  margin-top: 15px;
   margin-left: 10px;
-  margin-top: 20px;
+}
+.start {
+  background: rgb(255, 255, 255);
+  width: 75px;
+  border: 2px solid rgb(2, 141, 255);
+  height: 55px;
+  align-items: center;
+  text-align: center;
+  padding: 2px;
+  margin-top: 15px;
+  margin-left: 10px;
 }
 
-.when {
-  background-image: url("../images/when.png");
-  background-size: 80px 80px;
-  height: 80px;
-  width: 80px;
-  margin-left: 10px;
-}

@@ -4,7 +4,7 @@ import { Handle, useReactFlow } from 'react-flow-renderer'
 import { connect } from 'react-redux'
 import '../styles/index.css'
 
-const DiamondNode = ({ data, agamadata }) => {
+const Condition = ({ data, agamadata }) => {
   const flowInstance = useReactFlow()
   const conditionRightId = `${data.id}.right1`
   const conditionLeftId = `${data.id}.right2`
@@ -107,4 +107,4 @@ const mapState = (state) => ({
   agamadata: state.flowModel.nodes,
 })
 
-export default connect(mapState, mapDispatch)(DiamondNode)
+export default connect(mapState, mapDispatch)(Condition)

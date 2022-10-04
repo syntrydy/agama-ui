@@ -1,5 +1,4 @@
 import React, { useRef, useState, useCallback } from 'react'
-import { useSelector } from 'react-redux'
 import ReactFlow, {
   addEdge,
   useNodesState,
@@ -10,32 +9,28 @@ import ReactFlow, {
   Background,
   MiniMap,
 } from 'react-flow-renderer'
-import ActionNode from '../customNodes/ActionNode'
+import Trigger from '../customNodes/Trigger'
 import CircleNode from '../customNodes/CircleNode'
 import DataNode from '../customNodes/DataNode'
-import DiamondNode from '../customNodes/DiamondNode'
+import Condition from '../customNodes/Condition'
 import SubFlow from '../customNodes/SubFlow'
+import Call from '../customNodes/Call'
 import WhenOtherwise from '../customNodes/WhenOtherwise'
+import FinishFlow from '../customNodes/FinishFlow'
+import StartFlow from '../customNodes/StartFlow'
+import Basepath from '../customNodes/Basepath'
 
 const nodeTypes = {
   whenOtherwise: WhenOtherwise,
+  call: Call,
   circle: CircleNode,
-  condition: DiamondNode,
-  action: ActionNode,
+  condition: Condition,
+  action: Trigger,
   subflow: SubFlow,
   data: DataNode,
-}
-
-let evalResult = true
-let animateEdgeOne = false
-let animateEdgeTwo = false
-
-if (evalResult === true) {
-  // animateEdgeOne = true
-  animateEdgeTwo = false
-} else {
-  // animateEdgeTwo = true
-  animateEdgeOne = false
+  finish: FinishFlow,
+  start: StartFlow,
+  basepath: Basepath,
 }
 
 let id = 0
@@ -137,7 +132,7 @@ const MainPanel = () => {
         const actionTwo = {
           id: actionTwoId,
           type: 'action',
-          position: { x: 130, y: 120 },
+          position: { x: 130, y: 170 },
           parentNode: parentId,
           extent: 'parent',
           targetPosition: 'left',

@@ -18,7 +18,7 @@ function WhenOtherwise({ data }) {
         <label htmlFor="otherwise">Otherwise</label>
         <input id="otherwise" name="otherwise" onChange={onChange} />
       </div>
-      <Handle type="source" position={Position.Right} id="a" style={handleStyle} />
+      {/* <Handle type="source" position={Position.Right} id="a" style={handleStyle} /> */}
       <Handle type="source" position={Position.Right} id="b" />
     </div>
   );
