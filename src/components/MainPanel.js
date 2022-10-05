@@ -8,33 +8,33 @@ import ReactFlow, {
   updateEdge,
   Background,
   MiniMap,
-} from 'react-flow-renderer'
-import Trigger from '../customNodes/Trigger'
-import CircleNode from '../customNodes/CircleNode'
-import DataNode from '../customNodes/DataNode'
-import Condition from '../customNodes/Condition'
-import SubFlow from '../customNodes/SubFlow'
-import Call from '../customNodes/Call'
-import WhenOtherwise from '../customNodes/WhenOtherwise'
-import FinishFlow from '../customNodes/FinishFlow'
-import StartFlow from '../customNodes/StartFlow'
-import Basepath from '../customNodes/Basepath'
+} from 'reactflow'
+import 'reactflow/dist/style.css'
+import Trigger from '../agamaNodes/Trigger/Trigger'
+import DataNode from '../agamaNodes/Data/DataNode'
+import Condition from '../agamaNodes/Condition/Condition'
+import WoWise from '../agamaNodes/WoWise/WoWise'
+import Call from '../agamaNodes/Call/Call'
+import EndFlow from '../agamaNodes/flow/EndFlow'
+import StartFlow from '../agamaNodes/flow/StartFlow'
+import Basepath from '../agamaNodes/Basepath/Basepath'
+import Rrf from '../agamaNodes/RRF/Rrf'
 
 const nodeTypes = {
-  whenOtherwise: WhenOtherwise,
   call: Call,
-  circle: CircleNode,
   condition: Condition,
-  action: Trigger,
-  subflow: SubFlow,
+  trigger: Trigger,
+  wowise: WoWise,
   data: DataNode,
-  finish: FinishFlow,
+  end: EndFlow,
   start: StartFlow,
   basepath: Basepath,
+  rrf: Rrf,
 }
 
 let id = 0
 const getId = () => `dndnode_${id++}`
+const defaultViewport = { x: 10, y: 15, zoom: 1 }
 const MainPanel = () => {
   const reactFlowWrapper = useRef(null)
   const flowInstance = useReactFlow()
@@ -96,7 +96,7 @@ const MainPanel = () => {
         y: event.clientY - reactFlowBounds.top,
       })
 
-      if (type === 'subflow') {
+      if (type === 'wowise') {
         const parentId = 'WOD' + getId()
         const pNode = {
           id: parentId,
@@ -120,7 +120,7 @@ const MainPanel = () => {
         const actionOneId = `${parentId}_TRIGGER-${getId()}-SUCCESS`
         const actionOne = {
           id: actionOneId,
-          type: 'action',
+          type: 'trigger',
           position: { x: 130, y: 30 },
           parentNode: parentId,
           extent: 'parent',
@@ -131,7 +131,7 @@ const MainPanel = () => {
         const actionTwoId = `${parentId}_TRIGGER-${getId()}-FAILURE`
         const actionTwo = {
           id: actionTwoId,
-          type: 'action',
+          type: 'trigger',
           position: { x: 130, y: 170 },
           parentNode: parentId,
           extent: 'parent',
@@ -151,7 +151,6 @@ const MainPanel = () => {
             target: actionTwoId,
           },
         ]
-        // setEdges((eds) => eds)
         setNodes((nds) => nds.concat(pNode))
         setNodes((nds) => nds.concat(conditionNode))
         setNodes((nds) => nds.concat(actionOne))
@@ -167,16 +166,6 @@ const MainPanel = () => {
           targetPosition: 'left',
           sourcePosition: 'right',
           data: { label: `${type}`, id: newNodeId },
-        }
-        setNodes((nds) => nds.concat(newNode))
-      } else if (type === 'circle') {
-        const newNode = {
-          id: 'circle-' + getId(),
-          type,
-          position,
-          targetPosition: 'left',
-          sourcePosition: 'right',
-          data: { label: `${type}` },
         }
         setNodes((nds) => nds.concat(newNode))
       } else {
@@ -202,7 +191,6 @@ const MainPanel = () => {
           edges={edges}
           onNodesChange={onNodesChange}
           onEdgesChange={onEdgesChange}
-          // onChange={onChange}
           onConnect={onConnect}
           onEdgeUpdate={onEdgeUpdate}
           onEdgeUpdateStart={onEdgeUpdateStart}
@@ -212,20 +200,18 @@ const MainPanel = () => {
           deleteKeyCode={['Backspace', 'Delete']}
           onDragOver={onDragOver}
           nodeTypes={nodeTypes}
-          fitView
+          defaultViewport={defaultViewport}
         >
           <Controls />
-          <Background />
+          <Background variant="lines" />
           <MiniMap
             nodeStrokeColor={(n) => {
               if (n.type === 'input') return '#0041d0'
-              if (n.type === 'circle') return '#58dd6a'
               if (n.type === 'output') return '#ff0072'
               if (n.type === 'condition') return 'rgb(0, 225, 255)'
             }}
             nodeColor={(n) => {
-              if (n.type === 'action') return 'rgb(224, 79, 79)'
-              if (n.type === 'whenOtherwise') return 'rgb(79, 125, 224)'
+              if (n.type === 'trigger') return 'rgb(224, 79, 79)'
               return '#fff'
             }}
           />

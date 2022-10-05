@@ -1,22 +1,18 @@
-import { useCallback } from 'react'
-import { Handle, Position } from 'react-flow-renderer'
-import '../styles/index.css'
-const handleStyle = { top: 10 }
+import { Handle, Position } from 'reactflow'
+import { useState } from 'react'
+import './Basepath.css'
+import 'reactflow/dist/style.css';
 
 function Basepath({ data }) {
-  const onChange = useCallback((evt) => {
-    console.log(evt.target.value)
-  }, [])
-
+  const [agamaData, setagamaData] = useState({})
   return (
-    <div className="basepath" style={{ backgroundColor: data.color }}>
+    <div className="basepath">
       <Handle type="source" position={Position.Right} />
       <div>
         <label htmlFor="start">Basepath</label>
         <input
           id="start"
           name="start"
-          onChange={onChange}
           placeholder="e.g sample/otp-email"
         />
       </div>
@@ -24,7 +20,6 @@ function Basepath({ data }) {
         type="target"
         position={Position.Left}
         id={`${data.id}.righta`}
-        style={handleStyle}
       />
     </div>
   )

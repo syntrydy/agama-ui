@@ -1,38 +1,32 @@
-import { duration } from '@mui/material'
-import { useCallback } from 'react'
-import { Handle, Position } from 'react-flow-renderer'
-import '../styles/index.css'
-const handleStyle = { top: 10 }
+import { useState } from 'react'
+import { Handle, Position } from 'reactflow'
+import './Trigger.css'
+import 'reactflow/dist/style.css';
 
 function Trigger({ data }) {
-  const onChange = useCallback((evt) => {
-    console.log(evt.target.value)
-  }, [])
-
+  const [agamaData, setagamaData] = useState({})
   return (
-    <div className="action-node" style={{ backgroundColor: data.color }}>
+    <div className="trigger-node" style={{ backgroundColor: data.color }}>
       <Handle type="source" position={Position.Right} />
       <div>
-        <label htmlFor="action-node">Trigger Flow</label>
+        <label htmlFor="trigger-node">Trigger Flow</label>
       </div>
 
       <div className="fields">
       <div>
-        <label htmlFor="action">Flow Filename</label>
+        <label htmlFor="flow-filename">Flow Filename</label>
         <input
           id="flow-filename"
           name="flow-filename"
-          onChange={onChange}
           placeholder="e.g index"
         />
       </div>
 
       <div>
-        <label htmlFor="action">assigned variable name</label>
+        <label htmlFor="assigned-variable-name">assigned variable name</label>
         <input
           id="variable-name"
           name="assigned-variable-name"
-          onChange={onChange}
           placeholder="e.g obj = Trigger.io.jans..."
         />
       </div>
@@ -42,7 +36,6 @@ function Trigger({ data }) {
         type="target"
         position={Position.Left}
         id={`${data.id}.righta`}
-        style={handleStyle}
       />
     </div>
   )

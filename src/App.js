@@ -2,11 +2,11 @@ import React from 'react'
 import Grid from '@mui/material/Grid'
 import Paper from '@mui/material/Paper'
 import CssBaseline from '@mui/material/CssBaseline'
-import Header from './components/Header'
+import Header from './components/Header/Header'
 import MainPanel from './components/MainPanel'
-import Sidebar from './components/Sidebar'
-import { ReactFlowProvider } from 'react-flow-renderer'
-
+import Sidebar from './components/Sidebar/Sidebar'
+import { ReactFlowProvider } from 'reactflow'
+import 'reactflow/dist/style.css'
 function App() {
   return (
     <div>

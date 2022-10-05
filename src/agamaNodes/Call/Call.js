@@ -1,48 +1,41 @@
-import { useCallback } from 'react'
-import { Handle, Position } from 'react-flow-renderer'
-import '../styles/index.css'
-import TextField from '@mui/material/TextField'
-const handleStyle = { top: 30 }
+import { useState } from 'react'
+import { Handle, Position } from 'reactflow'
+import './Call.css'
+import 'reactflow/dist/style.css';
 
 function Call({ data }) {
-  const onChange = useCallback((evt) => {
-    console.log(evt.target.value)
-  }, [])
-
+  const [agamaData, setagamaData] = useState({})
   return (
-    <div className="call-node" style={{ backgroundColor: data.color }}>
+    <div className="call-node">
       <Handle type="source" position={Position.Right} />
       <div>
-        <label htmlFor="action-node">Call</label>
+        <label htmlFor="call-node">Call</label>
       </div>
 
       <div className="fields">
       <div>
-        <label htmlFor="action">Java method name</label>
+        <label htmlFor="method-name">Java method name</label>
         <input
           id="method-name"
           name="java-method-name"
-          onChange={onChange}
           placeholder="e.g io.jans.agama..."
         />
       </div>
 
       <div>
-        <label htmlFor="action">params(space seperated)</label>
+        <label htmlFor="params">params(space seperated)</label>
         <input
           id="params"
           name="params"
-          onChange={onChange}
           placeholder="e.g userId"
         />
       </div>
 
       <div>
-        <label htmlFor="action">assigned variable name</label>
+        <label htmlFor="assigned-variable-name">assigned variable name</label>
         <input
           id="variable-name"
           name="assigned-variable-name"
-          onChange={onChange}
           placeholder="e.g obj = Trigger.io.jans..."
         />
       </div>
@@ -52,7 +45,6 @@ function Call({ data }) {
         type="target"
         position={Position.Left}
         id={`${data.id}.righta`}
-        style={handleStyle}
       />
     </div>
   )

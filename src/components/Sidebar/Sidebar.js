@@ -1,6 +1,5 @@
 import React from 'react'
-import '../styles/index.css'
-import '../styles/icons.css'
+import './SidebarIcons.css'
 import { Grid } from '@mui/material'
 
 const Sidebar = () => {
@@ -21,9 +20,19 @@ const Sidebar = () => {
               className="start"
               onDragStart={(event) => onDragStart(event, 'start')}
               draggable
+            ></div>
+            <div style={{ marginLeft: '15px' }}>Start flow</div>
+          </item>
+        </Grid>
+        <Grid item xs={6}>
+          <item>
+            <div
+              className="end"
+              onDragStart={(event) => onDragStart(event, 'end')}
+              draggable
             >
-              Start Flow
             </div>
+            <div style={{ marginTop: '10px' }}>Finish Flow</div>
           </item>
         </Grid>
         <Grid item xs={6}>
@@ -41,7 +50,7 @@ const Sidebar = () => {
           <item>
             <div
               className="subflow-item"
-              onDragStart={(event) => onDragStart(event, 'subflow')}
+              onDragStart={(event) => onDragStart(event, 'wowise')}
               draggable
             >
               W/O WISE
@@ -63,7 +72,7 @@ const Sidebar = () => {
           <item>
             <div
               className="action"
-              onDragStart={(event) => onDragStart(event, 'action')}
+              onDragStart={(event) => onDragStart(event, 'trigger')}
               draggable
             >
               Trigger Flow
@@ -84,11 +93,11 @@ const Sidebar = () => {
         <Grid item xs={6}>
           <item>
             <div
-              className="finish"
-              onDragStart={(event) => onDragStart(event, 'finish')}
+              className="rrf-item"
+              onDragStart={(event) => onDragStart(event, 'rrf')}
               draggable
             >
-              Finish Flow
+              RRF
             </div>
           </item>
         </Grid>

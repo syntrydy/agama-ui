@@ -1,0 +1,25 @@
+.trigger-node {
+  height: 125px;
+  width: 165px;
+  border: 1px solid rgb(255, 255, 255);
+  padding: 5px;
+  border-radius: 5px;
+  background: rgb(224, 79, 79);
+}
+
+.trigger-node label {
+  display: block;
+  color: rgb(255, 255, 255);
+  font-size: 13px;
+}
+
+.trigger-node input {
+  border: 1px solid rgb(255, 255, 255);
+  border-radius: 2px;
+  width: 150px;
+}
+
+.fields {
+  margin-top: 3px;
+  margin-left: 5px;
+}

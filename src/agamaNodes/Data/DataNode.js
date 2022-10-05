@@ -1,8 +1,8 @@
 import { useCallback } from 'react'
-import { Handle, useReactFlow, Position } from 'react-flow-renderer'
+import { Handle, useReactFlow, Position } from 'reactflow'
 import { connect } from 'react-redux'
-import '../styles/index.css'
-const handleStyle = { top: 10 }
+import './DataNode.css'
+import 'reactflow/dist/style.css';
 
 function DataNode({ data, setNodeData }) {
   const flowInstance = useReactFlow()
@@ -37,7 +37,6 @@ function DataNode({ data, setNodeData }) {
         type="target"
         position={Position.Left}
         id={`${data.id}.righta`}
-        style={handleStyle}
       />
     </div>
   )

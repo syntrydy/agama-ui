@@ -1,8 +1,9 @@
 import { Button } from '@mui/material'
 import React, { useState } from 'react'
-import { Handle, useReactFlow } from 'react-flow-renderer'
+import { Handle, useReactFlow } from 'reactflow'
 import { connect } from 'react-redux'
-import '../styles/index.css'
+import './Condition.css'
+import 'reactflow/dist/style.css';
 
 const Condition = ({ data, agamadata }) => {
   const flowInstance = useReactFlow()
