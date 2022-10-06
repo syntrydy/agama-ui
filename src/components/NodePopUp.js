@@ -32,6 +32,15 @@ function NodePopUp({
     popUpNodeData.comment = document.getElementById(idComment).value
     saveHandler(popUpNodeData)
   }
+  function showColorField(agamaData) {
+    if (
+      agamaData.type === 'Agama-start-Flow' ||
+      agamaData.type === 'Agama-end-Flow'
+    ) {
+      return false
+    }
+    return true
+  }
   return (
     <Popover
       id={id}
@@ -49,7 +58,7 @@ function NodePopUp({
             Type
           </Grid>
           <Grid item xs={7}>
-          <Chip label={agamaData.type} color="primary" variant="outlined" />
+            <Chip label={agamaData.type} color="primary" variant="outlined" />
           </Grid>
           <Grid item xs={5}>
             Name
@@ -71,16 +80,22 @@ function NodePopUp({
               defaultValue={agamaData.description}
             />
           </Grid>
-          <Grid item xs={5}>
-            Node Color
-          </Grid>
-          <Grid item xs={7}>
-            <ColorPicker
-              id={idColor}
-              defaultValue={color}
-              onChange={(color) => updateColor(color)}
-            />
-          </Grid>
+          {showColorField(agamaData) && (
+            <>
+              <Grid item xs={5}>
+                Node Color
+              </Grid>
+              <Grid item xs={7}>
+                <ColorPicker
+                  id={idColor}
+                  defaultValue="#000"
+                  value={color}
+                  onChange={(color) => updateColor(color)}
+                />
+              </Grid>
+            </>
+          )}
+
           <Grid item xs={5}>
             Comment
           </Grid>
