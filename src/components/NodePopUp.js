@@ -1,10 +1,35 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Popover from '@mui/material/Popover'
 import { TextareaAutosize, Badge, Box, Button, TextField } from '@mui/material'
 import Grid from '@mui/material/Grid'
 import ColorPicker from 'material-ui-color-picker'
 
-function NodePopUp({ open, id, anchorEl, handleClose, agamaData }) {
+function NodePopUp({
+  open,
+  id,
+  anchorEl,
+  handleClose,
+  agamaData,
+  saveHandler,
+}) {
+  const [color, setcolor] = useState(agamaData.color)
+  const popUpNodeData = {}
+  const nodeId = agamaData.id
+  const idName = `${nodeId}-name`
+  const idDesc = `${nodeId}-desc`
+  const idColor = `${nodeId}-color`
+  const idComment = `${nodeId}-comment`
+  function updateColor(value) {
+    setcolor(value)
+  }
+
+  function doSave() {
+    popUpNodeData.name = document.getElementById(idName).value
+    popUpNodeData.description = document.getElementById(idDesc).value
+    popUpNodeData.color = document.getElementById(idColor).value
+    popUpNodeData.comment = document.getElementById(idComment).value
+    saveHandler(popUpNodeData)
+  }
   return (
     <Popover
       id={id}
@@ -22,32 +47,36 @@ function NodePopUp({ open, id, anchorEl, handleClose, agamaData }) {
             Type
           </Grid>
           <Grid item xs={6}>
-            <Badge
-              color="secondary"
-              badgeContent={agamaData.type || 'start'}
-            ></Badge>
+            <Badge color="secondary" badgeContent={agamaData.type}></Badge>
           </Grid>
           <Grid item xs={5}>
             Name
           </Grid>
           <Grid item xs={7}>
-            <TextField id="outlined-basic" variant="standard" />
+            <TextField
+              id={idName}
+              variant="standard"
+              defaultValue={agamaData.name}
+            />
           </Grid>
           <Grid item xs={5}>
             Description
           </Grid>
           <Grid item xs={7}>
-            <TextField id="outlined-basic" variant="standard" />
+            <TextField
+              id={idDesc}
+              variant="standard"
+              defaultValue={agamaData.description}
+            />
           </Grid>
           <Grid item xs={5}>
             Node Color
           </Grid>
           <Grid item xs={7}>
             <ColorPicker
-              name="color"
-              defaultValue="#000"
-              // value={this.state.color} - for controlled component
-              onChange={(color) => console.log(color)}
+              id={idColor}
+              defaultValue={color}
+              onChange={(color) => updateColor(color)}
             />
           </Grid>
           <Grid item xs={5}>
@@ -55,14 +84,15 @@ function NodePopUp({ open, id, anchorEl, handleClose, agamaData }) {
           </Grid>
           <Grid item xs={7}>
             <TextareaAutosize
-              aria-label="minimum height"
+              id={idComment}
+              defaultValue={agamaData.comment}
               minRows={3}
               placeholder="Add a comment"
               style={{ width: 170 }}
             />
           </Grid>
         </Grid>
-        <Button>Save</Button>
+        <Button onClick={doSave}>Save</Button>
       </Box>
     </Popover>
   )

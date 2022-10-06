@@ -9,100 +9,83 @@ const Sidebar = () => {
   }
 
   return (
-    <side>
+    <>
       <div className="description">
         You can drag these nodes to the pane on the left.
       </div>
       <Grid container>
         <Grid item xs={6}>
-          <item>
-            <div
-              className="start"
-              onDragStart={(event) => onDragStart(event, 'start')}
-              draggable
-            ></div>
-            <div style={{ marginLeft: '15px' }}>Start flow</div>
-          </item>
+          <div
+            className="start"
+            onDragStart={(event) => onDragStart(event, 'start')}
+            draggable
+          ></div>
+          <div style={{ marginLeft: '15px' }}>Start flow</div>
         </Grid>
         <Grid item xs={6}>
-          <item>
-            <div
-              className="end"
-              onDragStart={(event) => onDragStart(event, 'end')}
-              draggable
-            >
-            </div>
-            <div style={{ marginTop: '10px' }}>Finish Flow</div>
-          </item>
+          <div
+            className="end"
+            onDragStart={(event) => onDragStart(event, 'end')}
+            draggable
+          ></div>
+          <div style={{ marginTop: '10px' }}>Finish Flow</div>
         </Grid>
         <Grid item xs={6}>
-          <item>
-            <div
-              className="basepath-item"
-              onDragStart={(event) => onDragStart(event, 'basepath')}
-              draggable
-            >
-              Base path
-            </div>
-          </item>
+          <div
+            className="basepath-item"
+            onDragStart={(event) => onDragStart(event, 'basepath')}
+            draggable
+          >
+            Base path
+          </div>
         </Grid>
         <Grid item xs={6}>
-          <item>
-            <div
-              className="subflow-item"
-              onDragStart={(event) => onDragStart(event, 'wowise')}
-              draggable
-            >
-              W/O WISE
-            </div>
-          </item>
+          <div
+            className="subflow-item"
+            onDragStart={(event) => onDragStart(event, 'wowise')}
+            draggable
+          >
+            W/O WISE
+          </div>
         </Grid>
         <Grid item xs={6}>
-          <item>
-            <div
-              className="data"
-              onDragStart={(event) => onDragStart(event, 'data')}
-              draggable
-            >
-              Data Node
-            </div>
-          </item>
+          <div
+            className="data"
+            onDragStart={(event) => onDragStart(event, 'data')}
+            draggable
+          >
+            Data Node
+          </div>
         </Grid>
         <Grid item xs={6}>
-          <item>
-            <div
-              className="action"
-              onDragStart={(event) => onDragStart(event, 'trigger')}
-              draggable
-            >
-              Trigger Flow
-            </div>
-          </item>
+          <div
+            className="action"
+            onDragStart={(event) => onDragStart(event, 'trigger')}
+            draggable
+          >
+            Trigger Flow
+          </div>
         </Grid>
         <Grid item xs={6}>
-          <item>
-            <div
-              className="call"
-              onDragStart={(event) => onDragStart(event, 'call')}
-              draggable
-            >
-              Call (Java)
-            </div>
-          </item>
+          <div
+            className="call"
+            onDragStart={(event) => onDragStart(event, 'call')}
+            draggable
+          >
+            Call (Java)
+          </div>
         </Grid>
         <Grid item xs={6}>
-          <item>
-            <div
-              className="rrf-item"
-              onDragStart={(event) => onDragStart(event, 'rrf')}
-              draggable
-            >
-              RRF
-            </div>
-          </item>
+          <div
+            className="rrf-item"
+            onDragStart={(event) => onDragStart(event, 'rrf')}
+            draggable
+          >
+            RRF
+          </div>
         </Grid>
       </Grid>
-    </side>
+    </>
   )
 }
 

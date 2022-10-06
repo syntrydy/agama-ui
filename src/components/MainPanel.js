@@ -104,7 +104,7 @@ const MainPanel = () => {
           position: { x: 300, y: 5 },
           targetPosition: 'left',
           sourcePosition: 'right',
-          data: { label: 'When-Otherwise' },
+          data: { id: parentId, type: `${type}`, label: `${type}` },
         }
         const conditionId = `${parentId}_CONDITION-${getId()}`
         const conditionNode = {
@@ -115,7 +115,7 @@ const MainPanel = () => {
           extent: 'parent',
           targetPosition: 'left',
           sourcePosition: 'right',
-          data: { id: conditionId, label: `${type}` },
+          data: { id: conditionId, type: `${type}` },
         }
         const actionOneId = `${parentId}_TRIGGER-${getId()}-SUCCESS`
         const actionOne = {
@@ -126,7 +126,7 @@ const MainPanel = () => {
           extent: 'parent',
           targetPosition: 'left',
           sourcePosition: 'right',
-          data: { label: `${type}`, color: '#7be76d' },
+          data: { id: actionOneId, type: `${type}`, color: '#7be76d' },
         }
         const actionTwoId = `${parentId}_TRIGGER-${getId()}-FAILURE`
         const actionTwo = {
@@ -137,7 +137,7 @@ const MainPanel = () => {
           extent: 'parent',
           targetPosition: 'left',
           sourcePosition: 'right',
-          data: { label: `${type}` },
+          data: {id: actionTwoId, type: `${type}` },
         }
         const edges = [
           {
@@ -165,17 +165,43 @@ const MainPanel = () => {
           position,
           targetPosition: 'left',
           sourcePosition: 'right',
-          data: { label: `${type}`, id: newNodeId },
+          data: { id: newNodeId, type: `${type}` },
         }
         setNodes((nds) => nds.concat(newNode))
-      } else {
-        const newNode = {
-          id: getId(),
+      }
+      else if (type === 'start') {
+        const newStartId = 'start-' + getId()
+        const newStartNode = {
+          id: newStartId,
           type,
           position,
           targetPosition: 'left',
           sourcePosition: 'right',
-          data: { label: `${type}` },
+          data: { id: newStartId, type: `${type}` },
+        }
+        setNodes((nds) => nds.concat(newStartNode))
+      }  
+      else if (type === 'end') {
+        const newEndId = 'end-' + getId()
+        const newEndNode = {
+          id: newEndId,
+          type,
+          position,
+          targetPosition: 'left',
+          sourcePosition: 'right',
+          data: { id: newEndId, type: `${type}` },
+        }
+        setNodes((nds) => nds.concat(newEndNode))
+      }  
+      else {
+        const newNodeId = `${type}-${getId()}`
+        const newNode = {
+          id: newNodeId,
+          type,
+          position,
+          targetPosition: 'left',
+          sourcePosition: 'right',
+          data: { id: `${id}`, type: `${type}` },
         }
         setNodes((nds) => nds.concat(newNode))
       }
