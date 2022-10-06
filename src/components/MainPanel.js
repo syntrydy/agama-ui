@@ -232,12 +232,17 @@ const MainPanel = () => {
           <Background variant="lines" />
           <MiniMap
             nodeStrokeColor={(n) => {
-              if (n.type === 'input') return '#0041d0'
-              if (n.type === 'output') return '#ff0072'
-              if (n.type === 'condition') return 'rgb(0, 225, 255)'
+              if (n.type === 'start') return '#0041d0'
+              if (n.type === 'end') return '#ff0072'
+              if (n.type === 'basepath') return 'rgb(255, 137, 59)'
+              if (n.type === 'trigger') return 'rgb(224, 79, 79)'
+              if (n.type === 'data') return 'rgb(88, 184, 248)'
+              if (n.type === 'condition') return 'rgb(0, 195, 255)'
+              if (n.type === 'call') return 'rgb(185, 50, 212)'
+              if (n.type === 'rrf') return 'rgb(77, 2, 70)'
             }}
             nodeColor={(n) => {
-              if (n.type === 'trigger') return 'rgb(224, 79, 79)'
+              if (n.type === 'wowise') return 'rgb(161, 247, 150)'
               return '#fff'
             }}
           />
