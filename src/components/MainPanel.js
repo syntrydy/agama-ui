@@ -104,7 +104,7 @@ const MainPanel = () => {
           position: { x: 300, y: 5 },
           targetPosition: 'left',
           sourcePosition: 'right',
-          data: { id: parentId, type: `${type}`, label: `${type}` },
+          data: { id: parentId, type: `Agama-${type}-Flow` },
         }
         const conditionId = `${parentId}_CONDITION-${getId()}`
         const conditionNode = {
@@ -115,7 +115,7 @@ const MainPanel = () => {
           extent: 'parent',
           targetPosition: 'left',
           sourcePosition: 'right',
-          data: { id: conditionId, type: `${type}` },
+          data: { id: conditionId, type: `Agama-${type}-Node` },
         }
         const actionOneId = `${parentId}_TRIGGER-${getId()}-SUCCESS`
         const actionOne = {
@@ -126,7 +126,7 @@ const MainPanel = () => {
           extent: 'parent',
           targetPosition: 'left',
           sourcePosition: 'right',
-          data: { id: actionOneId, type: `${type}`, color: '#7be76d' },
+          data: { id: actionOneId, type: `Agama-${type}-Flow`, color: '#7be76d' },
         }
         const actionTwoId = `${parentId}_TRIGGER-${getId()}-FAILURE`
         const actionTwo = {
@@ -137,7 +137,7 @@ const MainPanel = () => {
           extent: 'parent',
           targetPosition: 'left',
           sourcePosition: 'right',
-          data: {id: actionTwoId, type: `${type}` },
+          data: {id: actionTwoId, type: `Agama-${type}-Flow` },
         }
         const edges = [
           {
@@ -165,7 +165,7 @@ const MainPanel = () => {
           position,
           targetPosition: 'left',
           sourcePosition: 'right',
-          data: { id: newNodeId, type: `${type}` },
+          data: { id: newNodeId, type: `Agama-${type}-Node` },
         }
         setNodes((nds) => nds.concat(newNode))
       }
@@ -177,7 +177,7 @@ const MainPanel = () => {
           position,
           targetPosition: 'left',
           sourcePosition: 'right',
-          data: { id: newStartId, type: `${type}` },
+          data: { id: newStartId, type: `Agama-${type}-Flow` },
         }
         setNodes((nds) => nds.concat(newStartNode))
       }  
@@ -189,7 +189,7 @@ const MainPanel = () => {
           position,
           targetPosition: 'left',
           sourcePosition: 'right',
-          data: { id: newEndId, type: `${type}` },
+          data: { id: newEndId, type: `Agama-${type}-Flow` },
         }
         setNodes((nds) => nds.concat(newEndNode))
       }  
@@ -201,7 +201,7 @@ const MainPanel = () => {
           position,
           targetPosition: 'left',
           sourcePosition: 'right',
-          data: { id: `${id}`, type: `${type}` },
+          data: { id: `${id}`, type: `Agama-${type}-Node` },
         }
         setNodes((nds) => nds.concat(newNode))
       }

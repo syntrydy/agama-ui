@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import Popover from '@mui/material/Popover'
-import { TextareaAutosize, Badge, Box, Button, TextField } from '@mui/material'
+import { TextareaAutosize, Box, Button, TextField, Chip } from '@mui/material'
 import Grid from '@mui/material/Grid'
 import ColorPicker from 'material-ui-color-picker'
 
@@ -45,11 +45,11 @@ function NodePopUp({
     >
       <Box style={{ margin: '10px', maxWidth: '300px' }}>
         <Grid container spacing={1}>
-          <Grid item xs={6}>
+          <Grid item xs={5}>
             Type
           </Grid>
-          <Grid item xs={6}>
-            <Badge color="secondary" badgeContent={agamaData.type}></Badge>
+          <Grid item xs={7}>
+          <Chip label={agamaData.type} color="primary" variant="outlined" />
           </Grid>
           <Grid item xs={5}>
             Name
