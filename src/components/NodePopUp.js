@@ -15,6 +15,7 @@ function NodePopUp({
   const [color, setcolor] = useState(agamaData.color)
   const popUpNodeData = {}
   const nodeId = agamaData.id
+  const nodeType = agamaData.type
   const idName = `${nodeId}-name`
   const idDesc = `${nodeId}-desc`
   const idColor = `${nodeId}-color`
@@ -24,6 +25,7 @@ function NodePopUp({
   }
 
   function doSave() {
+    popUpNodeData.type = nodeType
     popUpNodeData.name = document.getElementById(idName).value
     popUpNodeData.description = document.getElementById(idDesc).value
     popUpNodeData.color = document.getElementById(idColor).value
