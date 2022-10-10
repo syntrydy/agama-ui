@@ -36,19 +36,21 @@ const nodeTypes = {
   quit: Quit,
 }
 
+let id = 0
+const getId = () => `dndnode_${id++}`
+const defaultViewport = { x: 10, y: 15, zoom: 1 }
+
+const initialNodeId = `start- ${getId()}`
 const initialNodes = [
   {
-    id: '1',
+    id: initialNodeId,
     type: 'start',
     sourcePosition: 'right',
-    data: { label: 'Start Flow' },
+    data: {id: initialNodeId, type: "Agama-start-Flow"},
     position: { x: 250, y: 250 },
   },
 ]
 
-let id = 0
-const getId = () => `dndnode_${id++}`
-const defaultViewport = { x: 10, y: 15, zoom: 1 }
 const MainPanel = () => {
   const reactFlowWrapper = useRef(null)
   const flowInstance = useReactFlow()

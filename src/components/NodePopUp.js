@@ -28,7 +28,10 @@ function NodePopUp({
     popUpNodeData.type = nodeType
     popUpNodeData.name = document.getElementById(idName).value
     popUpNodeData.description = document.getElementById(idDesc).value
-    popUpNodeData.color = document.getElementById(idColor).value
+    if (document.getElementById(idColor) !== null) {
+      popUpNodeData.color = document.getElementById(idColor).value 
+    }
+    
     popUpNodeData.comment = document.getElementById(idComment).value
     saveHandler(popUpNodeData)
   }

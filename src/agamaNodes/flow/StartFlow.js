@@ -6,6 +6,8 @@ import './StartFlow.css'
 import 'reactflow/dist/style.css'
 import NodePopUp from '../../components/NodePopUp'
 import { AgamaTooltip } from '../../components/AgamaTooltip/AgamaTooltip'
+import AgamaNodeAddMenu from '../../components/AgamaNodeAddMenu/AgamaNodeAddMenu'
+import { DeleteOutlined, EditOutlined } from '@mui/icons-material';
 function StartFlow({ data }) {
   const isValidConnection = (connection) => {
     if (
@@ -53,7 +55,7 @@ function StartFlow({ data }) {
   }
   return (
     <>
-      <div onClick={handleClick}>
+      <div >
         <AgamaTooltip title="starts a new flow">
           <div className="start-node">
             <label htmlFor="end">Start Flow</label>
@@ -62,6 +64,11 @@ function StartFlow({ data }) {
               position={Position.Right}
               isValidConnection={isValidConnection}
             />
+            <div style={{paddingLeft: '80px'}}>
+            <AgamaNodeAddMenu />
+            <DeleteOutlined style={{color: '#FF0000'}}/>
+            <EditOutlined onClick={handleClick}/>
+            </div>
           </div>
         </AgamaTooltip>
       </div>
