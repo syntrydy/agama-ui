@@ -7,6 +7,16 @@ import 'reactflow/dist/style.css'
 import NodePopUp from '../../components/NodePopUp'
 const handleStyleRight = { top: 40, left: 66 }
 function StartFlow({ data }) {
+  const isValidConnection = (connection) => {
+    if (
+      connection.source.includes('start') &&
+      connection.target.includes('end')
+    ) {
+      return false
+    }else{
+      return true
+    }
+  }
   const flowInstance = useReactFlow()
   const nodeId = data.id
   const [nodeData, setNodeData] = useState(data)
@@ -49,6 +59,7 @@ function StartFlow({ data }) {
             type="source"
             position={Position.Right}
             style={handleStyleRight}
+            isValidConnection={isValidConnection}
           />
         </div>
       </div>
