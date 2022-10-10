@@ -5,6 +5,7 @@ import { Handle, Position } from 'reactflow'
 import { useState } from 'react'
 import 'reactflow/dist/style.css'
 import './WoWise.css'
+import { AgamaTooltip } from '../../components/AgamaTooltip/AgamaTooltip'
 
 function WoWise({ data }) {
   const flowInstance = useReactFlow()
@@ -44,10 +45,12 @@ function WoWise({ data }) {
   return (
     <>
       <div onClick={handleClick}>
-        <div className="wowise">
-          <Handle type="target" position={Position.Left} />
-          <div id="subflow">{data.type}</div>
-        </div>
+        <AgamaTooltip title="Use to write conditionals.">
+          <div className="wowise">
+            <Handle type="target" position={Position.Left} />
+            <div id="subflow">{data.type}</div>
+          </div>
+        </AgamaTooltip>
       </div>
       <NodePopUp
         id={id}

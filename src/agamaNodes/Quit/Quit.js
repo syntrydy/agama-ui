@@ -5,6 +5,7 @@ import { useState } from 'react'
 import { Handle, Position } from 'reactflow'
 import './Quit.css'
 import 'reactflow/dist/style.css'
+import { AgamaTooltip } from '../../components/AgamaTooltip/AgamaTooltip'
 
 function Quit({ data }) {
   const flowInstance = useReactFlow()
@@ -44,22 +45,21 @@ function Quit({ data }) {
   return (
     <>
       <div onClick={handleClick}>
-        <div className="quit-node">
-          <Handle type="source" position={Position.Right} />
-          <div>
-            <label htmlFor="quit-node">Quit</label>
-            <input
-                id="quit-node"
-                name="quit"
-              />
-          </div>
+        <AgamaTooltip title="Quit">
+          <div className="quit-node">
+            <Handle type="source" position={Position.Right} />
+            <div>
+              <label htmlFor="quit-node">Quit</label>
+              <input id="quit-node" name="quit" />
+            </div>
 
-          <Handle
-            type="target"
-            position={Position.Left}
-            id={`${data.id}.righta`}
-          />
-        </div>
+            <Handle
+              type="target"
+              position={Position.Left}
+              id={`${data.id}.righta`}
+            />
+          </div>
+        </AgamaTooltip>
       </div>
       <NodePopUp
         id={id}

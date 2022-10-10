@@ -5,6 +5,7 @@ import { Handle, Position } from 'reactflow'
 import { useState } from 'react'
 import './Basepath.css'
 import 'reactflow/dist/style.css'
+import { AgamaTooltip } from '../../components/AgamaTooltip/AgamaTooltip'
 function Basepath({ data }) {
   const flowInstance = useReactFlow()
   const nodeId = data.id
@@ -43,18 +44,24 @@ function Basepath({ data }) {
   return (
     <>
       <div onClick={handleClick}>
-        <div className="basepath">
-          <Handle type="source" position={Position.Right} />
-          <div>
-            <label htmlFor="start">Basepath</label>
-            <input id="start" name="start" placeholder="e.g sample/otp-email" />
+        <AgamaTooltip title="The Basepath directive determines where flow assets reside">
+          <div className="basepath">
+            <Handle type="source" position={Position.Right} />
+            <div>
+              <label htmlFor="start">Basepath</label>
+              <input
+                id="start"
+                name="start"
+                placeholder="e.g sample/otp-email"
+              />
+            </div>
+            <Handle
+              type="target"
+              position={Position.Left}
+              id={`${data.id}.righta`}
+            />
           </div>
-          <Handle
-            type="target"
-            position={Position.Left}
-            id={`${data.id}.righta`}
-          />
-        </div>
+        </AgamaTooltip>
       </div>
       <NodePopUp
         id={id}

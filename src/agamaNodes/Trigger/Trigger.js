@@ -5,6 +5,7 @@ import { useState } from 'react'
 import { Handle, Position } from 'reactflow'
 import './Trigger.css'
 import 'reactflow/dist/style.css'
+import { AgamaTooltip } from '../../components/AgamaTooltip/AgamaTooltip'
 
 function Trigger({ data }) {
   const flowInstance = useReactFlow()
@@ -44,40 +45,42 @@ function Trigger({ data }) {
   return (
     <>
       <div onClick={handleClick}>
-        <div className="trigger-node" style={{ backgroundColor: data.color }}>
-          <Handle type="source" position={Position.Right} />
-          <div>
-            <label htmlFor="trigger-node">Trigger Flow</label>
-          </div>
-
-          <div className="fields">
+        <AgamaTooltip title="triggers an action">
+          <div className="trigger-node" style={{ backgroundColor: data.color }}>
+            <Handle type="source" position={Position.Right} />
             <div>
-              <label htmlFor="flow-filename">Flow Filename</label>
-              <input
-                id="flow-filename"
-                name="flow-filename"
-                placeholder="e.g index"
-              />
+              <label htmlFor="trigger-node">Trigger Flow</label>
             </div>
 
-            <div>
-              <label htmlFor="assigned-variable-name">
-                assigned variable name
-              </label>
-              <input
-                id="variable-name"
-                name="assigned-variable-name"
-                placeholder="e.g obj = Trigger.io.jans..."
-              />
-            </div>
-          </div>
+            <div className="fields">
+              <div>
+                <label htmlFor="flow-filename">Flow Filename</label>
+                <input
+                  id="flow-filename"
+                  name="flow-filename"
+                  placeholder="e.g index"
+                />
+              </div>
 
-          <Handle
-            type="target"
-            position={Position.Left}
-            id={`${data.id}.righta`}
-          />
-        </div>
+              <div>
+                <label htmlFor="assigned-variable-name">
+                  assigned variable name
+                </label>
+                <input
+                  id="variable-name"
+                  name="assigned-variable-name"
+                  placeholder="e.g obj = Trigger.io.jans..."
+                />
+              </div>
+            </div>
+
+            <Handle
+              type="target"
+              position={Position.Left}
+              id={`${data.id}.righta`}
+            />
+          </div>
+        </AgamaTooltip>
       </div>
       <NodePopUp
         id={id}

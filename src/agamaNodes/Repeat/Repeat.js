@@ -5,6 +5,7 @@ import { Handle, Position } from 'reactflow'
 import { useState } from 'react'
 import './Repeat.css'
 import 'reactflow/dist/style.css'
+import { AgamaTooltip } from '../../components/AgamaTooltip/AgamaTooltip'
 function Repeat({ data }) {
   const flowInstance = useReactFlow()
   const nodeId = data.id
@@ -43,37 +44,39 @@ function Repeat({ data }) {
   return (
     <>
       <div onClick={handleClick}>
-        <div className="repeat-node">
-          <Handle type="source" position={Position.Right} />
-          <div>
-            <label htmlFor="trigger-node">Repeat</label>
-          </div>
-          <div className="fields">
+        <AgamaTooltip title="Repeat block">
+          <div className="repeat-node">
+            <Handle type="source" position={Position.Right} />
             <div>
-              <label htmlFor="repeat-block">Repeat Block</label>
-              <input
-                id="repeat-block"
-                name="repeat-block"
-                placeholder="block to repeat"
-              />
+              <label htmlFor="trigger-node">Repeat</label>
             </div>
-            <div>
-              <label htmlFor="assigned-variable-name">
-                Max number of times
-              </label>
-              <input
-                id="max-number-times"
-                name="max-number"
-                placeholder="e.g 3"
-              />
+            <div className="fields">
+              <div>
+                <label htmlFor="repeat-block">Repeat Block</label>
+                <input
+                  id="repeat-block"
+                  name="repeat-block"
+                  placeholder="block to repeat"
+                />
+              </div>
+              <div>
+                <label htmlFor="assigned-variable-name">
+                  Max number of times
+                </label>
+                <input
+                  id="max-number-times"
+                  name="max-number"
+                  placeholder="e.g 3"
+                />
+              </div>
             </div>
+            <Handle
+              type="target"
+              position={Position.Left}
+              id={`${data.id}.righta`}
+            />
           </div>
-          <Handle
-            type="target"
-            position={Position.Left}
-            id={`${data.id}.righta`}
-          />
-        </div>
+        </AgamaTooltip>
       </div>
       <NodePopUp
         id={id}

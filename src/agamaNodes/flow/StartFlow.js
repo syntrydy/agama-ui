@@ -5,6 +5,8 @@ import { useReactFlow } from 'reactflow'
 import './StartFlow.css'
 import 'reactflow/dist/style.css'
 import NodePopUp from '../../components/NodePopUp'
+import { Tooltip } from '@mui/material'
+import { AgamaTooltip } from '../../components/AgamaTooltip/AgamaTooltip'
 const handleStyleRight = { top: 40, left: 66 }
 function StartFlow({ data }) {
   const isValidConnection = (connection) => {
@@ -54,6 +56,7 @@ function StartFlow({ data }) {
   return (
     <>
       <div onClick={handleClick}>
+        <AgamaTooltip title="starts a new flow">
         <div className="start-node">
           <Handle
             type="source"
@@ -62,6 +65,7 @@ function StartFlow({ data }) {
             isValidConnection={isValidConnection}
           />
         </div>
+        </AgamaTooltip>
       </div>
       <NodePopUp
         id={id}

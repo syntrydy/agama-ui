@@ -35,6 +35,7 @@ function NodePopUp({
   function showColorField(agamaData) {
     if (
       agamaData.type === 'Agama-start-Flow' ||
+      agamaData.type === 'Agama-quit-Node' ||
       agamaData.type === 'Agama-end-Flow'
     ) {
       return false
