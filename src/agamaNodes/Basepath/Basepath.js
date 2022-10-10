@@ -48,7 +48,7 @@ function Basepath({ data }) {
           <div className="basepath">
             <Handle type="source" position={Position.Right} />
             <div>
-              <label htmlFor="start">Basepath</label>
+              <label htmlFor="basepath">Basepath</label>
               <input
                 id="start"
                 name="start"

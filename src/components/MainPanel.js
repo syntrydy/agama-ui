@@ -36,13 +36,23 @@ const nodeTypes = {
   quit: Quit,
 }
 
+const initialNodes = [
+  {
+    id: '1',
+    type: 'start',
+    sourcePosition: 'right',
+    data: { label: 'Start Flow' },
+    position: { x: 250, y: 250 },
+  },
+]
+
 let id = 0
 const getId = () => `dndnode_${id++}`
 const defaultViewport = { x: 10, y: 15, zoom: 1 }
 const MainPanel = () => {
   const reactFlowWrapper = useRef(null)
   const flowInstance = useReactFlow()
-  const [nodes, setNodes, onNodesChange] = useNodesState([])
+  const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes)
   const [edges, setEdges, onEdgesChange] = useEdgesState([])
   const [reactFlowInstance, setReactFlowInstance] = useState(null)
   const edgeUpdateSuccessful = useRef(true)

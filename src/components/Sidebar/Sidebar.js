@@ -24,8 +24,9 @@ const Sidebar = () => {
               className="start"
               onDragStart={(event) => onDragStart(event, 'start')}
               draggable
-            ></div>
-            <div style={{ marginLeft: '15px' }}>Start flow</div>
+            >
+              Start flow
+            </div>
           </Grid>
         </AgamaTooltip>
         <AgamaTooltip
@@ -37,8 +38,9 @@ const Sidebar = () => {
               className="end"
               onDragStart={(event) => onDragStart(event, 'end')}
               draggable
-            ></div>
-            <div style={{ marginTop: '10px' }}>Finish Flow</div>
+            >
+              End flow
+            </div>
           </Grid>
         </AgamaTooltip>
 

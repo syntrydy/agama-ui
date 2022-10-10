@@ -1,6 +1,16 @@
 .end-node {
-    background-image: url("../../images/end.png");
-    background-size: 80px 80px;
-    height: 80px;
-    width: 80px;
-  }
+  background-size: 80px 80px;
+  height: 80px;
+  width: 120px;
+  border: 1px solid rgb(56, 56, 56);
+  border-radius: 5px;
+  background: rgb(56, 56, 56);
+}
+
+.end-node label {
+  margin-top: 28px;
+  display: block;
+  color: rgb(255, 255, 255);
+  font-size: 18px;
+  text-align: center;
+}

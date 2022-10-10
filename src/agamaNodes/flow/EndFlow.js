@@ -6,7 +6,7 @@ import './EndFlow.css'
 import 'reactflow/dist/style.css'
 import NodePopUp from '../../components/NodePopUp'
 import { AgamaTooltip } from '../../components/AgamaTooltip/AgamaTooltip'
-const handleStyle = { top: 30 }
+
 function EndFlow({ data }) {
   const flowInstance = useReactFlow()
   const nodeId = data.id
@@ -47,11 +47,11 @@ function EndFlow({ data }) {
       <div onClick={handleClick}>
         <AgamaTooltip title="Ends a flow">
           <div className="end-node" style={{ backgroundColor: data.color }}>
+          <label htmlFor="end">End Flow</label>
             <Handle
               type="target"
               position={Position.Left}
               id={`${data.id}.righta`}
-              style={handleStyle}
             />
           </div>
         </AgamaTooltip>
