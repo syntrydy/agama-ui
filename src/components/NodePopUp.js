@@ -109,7 +109,9 @@ function NodePopUp({
             />
           </Grid>
         </Grid>
-        <Button onClick={doSave}>Save</Button>
+        <Button onClick={doSave} style={{ marginLeft: '-10px' }}>
+          Save
+        </Button>
       </Box>
     </Popover>
   )

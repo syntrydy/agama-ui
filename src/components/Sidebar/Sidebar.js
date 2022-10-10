@@ -84,6 +84,24 @@ const Sidebar = () => {
             RRF
           </div>
         </Grid>
+        <Grid item xs={6}>
+          <div
+            className="repeat"
+            onDragStart={(event) => onDragStart(event, 'repeat')}
+            draggable
+          >
+            Repeat Node
+          </div>
+        </Grid>
+        <Grid item xs={6}>
+          <div
+            className="quit"
+            onDragStart={(event) => onDragStart(event, 'quit')}
+            draggable
+          >
+            Quit
+          </div>
+        </Grid>
       </Grid>
     </>
   )

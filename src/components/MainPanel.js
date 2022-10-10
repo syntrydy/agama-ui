@@ -19,6 +19,8 @@ import EndFlow from '../agamaNodes/flow/EndFlow'
 import StartFlow from '../agamaNodes/flow/StartFlow'
 import Basepath from '../agamaNodes/Basepath/Basepath'
 import Rrf from '../agamaNodes/RRF/Rrf'
+import Quit from '../agamaNodes/Quit/Quit'
+import Repeat from '../agamaNodes/Repeat/Repeat'
 
 const nodeTypes = {
   call: Call,
@@ -30,6 +32,8 @@ const nodeTypes = {
   start: StartFlow,
   basepath: Basepath,
   rrf: Rrf,
+  repeat:Repeat,
+  quit: Quit,
 }
 
 let id = 0
@@ -121,7 +125,7 @@ const MainPanel = () => {
         const actionOne = {
           id: actionOneId,
           type: 'trigger',
-          position: { x: 130, y: 30 },
+          position: { x: 210, y: 30 },
           parentNode: parentId,
           extent: 'parent',
           targetPosition: 'left',
@@ -132,7 +136,7 @@ const MainPanel = () => {
         const actionTwo = {
           id: actionTwoId,
           type: 'trigger',
-          position: { x: 130, y: 170 },
+          position: { x: 210, y: 170 },
           parentNode: parentId,
           extent: 'parent',
           targetPosition: 'left',
