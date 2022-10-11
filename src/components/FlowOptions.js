@@ -18,6 +18,12 @@ function FlowOptions({ data }) {
       comment: '',
     }
   }
+  function canDelete(node) {
+    if (node.type.includes('start')) {
+      return false
+    }
+    return true
+  }
   const [agamaData, setAgamaData] = useState(nodeData.agamaData)
   const [anchorEl, setAnchorEl] = React.useState(null)
   const open = Boolean(anchorEl)
@@ -41,7 +47,7 @@ function FlowOptions({ data }) {
   }
 
   const deleteNodeById = (id) => {
-    flowInstance.setNodes((nds) => nds.filter((node) => node.id !== id))
+    flowInstance.setNodes((nds) => nds.filter((node) => canDelete(node)? node.id !== id : node.id))
   }
   return (
     <>

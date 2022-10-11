@@ -3,9 +3,9 @@ import { styled, alpha } from '@mui/material/styles'
 import Button from '@mui/material/Button'
 import Menu from '@mui/material/Menu'
 import MenuItem from '@mui/material/MenuItem'
-import Divider from '@mui/material/Divider'
 import AddCircleOutlined from '@mui/icons-material/AddCircleOutlined'
 import { useReactFlow } from 'reactflow'
+import { addCallNode } from './MenuOptions'
 
 export const AgamaNodeAddMenu = styled((props) => (
   <Menu
@@ -65,9 +65,12 @@ export default function CustomizedMenus() {
   const getId = () => `dndnode_${nodeId++}`
   const xPos = useRef(0);
   const flowInstance = useReactFlow()
+  // const sourceId = flowInstance.getNode
   const addCallNode = useCallback(() => {
     const newCallId = 'Call-' + getId()
     xPos.current += 400;
+
+    //new Call Node
     const newNode = {
       id: newCallId,
       position: {
@@ -79,7 +82,17 @@ export default function CustomizedMenus() {
         id: newCallId, type: 'Agama-call-Flow'
       },
     }
+
+    // edge
+    const edges = [
+      {
+        id: 'source-call',
+        source: '',
+        target: newCallId,
+      },
+    ]
     flowInstance.addNodes(newNode)
+    flowInstance.setEdges((eds) => eds.concat(edges[0]))
   }, [])
 
   return (
@@ -109,12 +122,20 @@ export default function CustomizedMenus() {
         <MenuItem onClick={handleClose} disableRipple>
           Trigger
         </MenuItem>
-        <Divider sx={{ my: 0.5 }} />
         <MenuItem onClick={handleClose} disableRipple>
           RRF
         </MenuItem>
         <MenuItem onClick={handleClose} disableRipple>
+          Log
+        </MenuItem>
+        <MenuItem onClick={handleClose} disableRipple>
           When-Otherwise
+        </MenuItem>
+        <MenuItem onClick={handleClose} disableRipple>
+          Repeat
+        </MenuItem>
+        <MenuItem onClick={handleClose} disableRipple>
+          Finish
         </MenuItem>
       </AgamaNodeAddMenu>
     </div>

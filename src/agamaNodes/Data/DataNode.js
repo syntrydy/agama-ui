@@ -61,7 +61,6 @@ function DataNode({ data, updateNodeDataInStore }) {
       }),
     )
   }
-
   return (
     <>
       <div onClick={handleClick}>
