@@ -62,21 +62,22 @@ export default function CustomizedMenus() {
 
   // testing with call node
   let nodeId = 0
+  const getId = () => `dndnode_${nodeId++}`
   const xPos = useRef(0);
   const flowInstance = useReactFlow()
   const addCallNode = useCallback(() => {
-    const id = `${++nodeId}`
+    const newCallId = 'Call-' + getId()
     xPos.current += 400;
     const newNode = {
-      id,
+      id: newCallId,
       position: {
         x: xPos.current,
         y: 250,
       },
+      type: 'call',
       data: {
-        label: `Node ${id}`,
+        id: newCallId, type: 'Agama-call-Flow'
       },
-      type: 'call'
     }
     flowInstance.addNodes(newNode)
   }, [])

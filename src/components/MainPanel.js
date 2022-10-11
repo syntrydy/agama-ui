@@ -126,7 +126,7 @@ const MainPanel = () => {
         const conditionNode = {
           id: conditionId,
           type: 'condition',
-          position: { x: 20, y: 80 },
+          position: { x: 20, y: 120 },
           parentNode: parentId,
           extent: 'parent',
           targetPosition: 'left',
@@ -137,7 +137,7 @@ const MainPanel = () => {
         const actionOne = {
           id: actionOneId,
           type: 'trigger',
-          position: { x: 210, y: 30 },
+          position: { x: 210, y: 5 },
           parentNode: parentId,
           extent: 'parent',
           targetPosition: 'left',
@@ -148,7 +148,7 @@ const MainPanel = () => {
         const actionTwo = {
           id: actionTwoId,
           type: 'trigger',
-          position: { x: 210, y: 170 },
+          position: { x: 210, y: 195 },
           parentNode: parentId,
           extent: 'parent',
           targetPosition: 'left',
@@ -174,7 +174,7 @@ const MainPanel = () => {
         setEdges((eds) => eds.concat(edges[0]))
         setEdges((eds) => eds.concat(edges[1]))
       } else if (type === 'data') {
-        const newNodeId = 'data-' + getId()
+        const newNodeId = 'Data-' + getId()
         const newNode = {
           id: newNodeId,
           type,
@@ -186,7 +186,7 @@ const MainPanel = () => {
         setNodes((nds) => nds.concat(newNode))
       }
       else if (type === 'start') {
-        const newStartId = 'start-' + getId()
+        const newStartId = 'Start-' + getId()
         const newStartNode = {
           id: newStartId,
           type,
@@ -198,7 +198,7 @@ const MainPanel = () => {
         setNodes((nds) => nds.concat(newStartNode))
       }  
       else if (type === 'end') {
-        const newEndId = 'end-' + getId()
+        const newEndId = 'End-' + getId()
         const newEndNode = {
           id: newEndId,
           type,
@@ -209,6 +209,78 @@ const MainPanel = () => {
         }
         setNodes((nds) => nds.concat(newEndNode))
       }  
+      else if (type === 'call') {
+        const newCallId = 'Call-' + getId()
+        const newCallNode = {
+          id: newCallId,
+          type,
+          position,
+          targetPosition: 'left',
+          sourcePosition: 'right',
+          data: { id: newCallId, type: `Agama-${type}-Flow` },
+        }
+        setNodes((nds) => nds.concat(newCallNode))
+      }  
+      else if (type === 'basepath') {
+        const newBasePathId = 'Basepath-' + getId()
+        const newBasePathNode = {
+          id: newBasePathId,
+          type,
+          position,
+          targetPosition: 'left',
+          sourcePosition: 'right',
+          data: { id: newBasePathId, type: `Agama-${type}-Flow` },
+        }
+        setNodes((nds) => nds.concat(newBasePathNode))
+      }  
+      else if (type === 'rrf') {
+        const newRrfId = 'RRF-' + getId()
+        const newRrfNode = {
+          id: newRrfId,
+          type,
+          position,
+          targetPosition: 'left',
+          sourcePosition: 'right',
+          data: { id: newRrfId, type: `Agama-${type}-Flow` },
+        }
+        setNodes((nds) => nds.concat(newRrfNode))
+      }
+      else if (type === 'trigger') {
+        const newTriggerId = 'Trigger-' + getId()
+        const newTriggerNode = {
+          id: newTriggerId,
+          type,
+          position,
+          targetPosition: 'left',
+          sourcePosition: 'right',
+          data: { id: newTriggerId, type: `Agama-${type}-Flow` },
+        }
+        setNodes((nds) => nds.concat(newTriggerNode))
+      }
+      else if (type === 'repeat') {
+        const newRepeatId = 'Repeat-' + getId()
+        const newRepeatNode = {
+          id: newRepeatId,
+          type,
+          position,
+          targetPosition: 'left',
+          sourcePosition: 'right',
+          data: { id: newRepeatId, type: `Agama-${type}-Flow` },
+        }
+        setNodes((nds) => nds.concat(newRepeatNode))
+      }
+      else if (type === 'quit') {
+        const newQuitId = 'Quit-' + getId()
+        const newQuitNode = {
+          id: newQuitId,
+          type,
+          position,
+          targetPosition: 'left',
+          sourcePosition: 'right',
+          data: { id: newQuitId, type: `Agama-${type}-Flow` },
+        }
+        setNodes((nds) => nds.concat(newQuitNode))
+      }
       else {
         const newNodeId = `${type}-${getId()}`
         const newNode = {
