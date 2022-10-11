@@ -115,6 +115,9 @@ function NodePopUp({
         <Button onClick={doSave} style={{ marginLeft: '-10px' }}>
           Save
         </Button>
+        <Button onClick={handleClose} style={{ color: 'red '}}>
+          Cancel
+        </Button>
       </Box>
     </Popover>
   )
