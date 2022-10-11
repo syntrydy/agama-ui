@@ -31,7 +31,6 @@ function NodePopUp({
     if (document.getElementById(idColor) !== null) {
       popUpNodeData.color = document.getElementById(idColor).value 
     }
-    
     popUpNodeData.comment = document.getElementById(idComment).value
     saveHandler(popUpNodeData)
   }

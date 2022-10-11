@@ -1,10 +1,11 @@
-import * as React from 'react'
+import React, { useCallback, useRef } from 'react'
 import { styled, alpha } from '@mui/material/styles'
 import Button from '@mui/material/Button'
 import Menu from '@mui/material/Menu'
 import MenuItem from '@mui/material/MenuItem'
 import Divider from '@mui/material/Divider'
 import AddCircleOutlined from '@mui/icons-material/AddCircleOutlined'
+import { useReactFlow } from 'reactflow'
 
 export const AgamaNodeAddMenu = styled((props) => (
   <Menu
@@ -59,6 +60,27 @@ export default function CustomizedMenus() {
     setAnchorEl(null)
   }
 
+  // testing with call node
+  let nodeId = 0
+  const xPos = useRef(0);
+  const flowInstance = useReactFlow()
+  const addCallNode = useCallback(() => {
+    const id = `${++nodeId}`
+    xPos.current += 400;
+    const newNode = {
+      id,
+      position: {
+        x: xPos.current,
+        y: 250,
+      },
+      data: {
+        label: `Node ${id}`,
+      },
+      type: 'call'
+    }
+    flowInstance.addNodes(newNode)
+  }, [])
+
   return (
     <div>
       <Button
@@ -69,7 +91,7 @@ export default function CustomizedMenus() {
         variant="text"
         disableElevation
         onClick={handleClick}
-        endIcon={<AddCircleOutlined style={{color: '#68BB59'}}/>}
+        endIcon={<AddCircleOutlined style={{ color: '#68BB59' }} />}
       ></Button>
       <AgamaNodeAddMenu
         id="demo-customized-menu"
@@ -80,7 +102,7 @@ export default function CustomizedMenus() {
         open={open}
         onClose={handleClose}
       >
-        <MenuItem onClick={handleClose} disableRipple>
+        <MenuItem onClick={addCallNode} disableRipple>
           Call
         </MenuItem>
         <MenuItem onClick={handleClose} disableRipple>
