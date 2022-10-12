@@ -92,3 +92,9 @@ export const showRepeatBlockField = (agamaData) => {
   }
   return true
 }
+export const showQuitConditionField = (agamaData) => {
+  if (agamaData.type !== 'Agama-quit-Node') {
+    return false
+  }
+  return true
+}

@@ -15,6 +15,7 @@ import {
   showLogMessageField,
   showMaxNumberOfIterationsField,
   showRepeatBlockField,
+  showQuitConditionField
 } from './Utils/NodePopUpUtils'
 
 function NodePopUp({
@@ -41,6 +42,7 @@ function NodePopUp({
   const idTemplateName = `${nodeId}-templateName`
   const idMaxIteration = `${nodeId}-maxIteration`
   const idRepeatBlock = `${nodeId}-repeatBlock`
+  const idQuitCondition = `${nodeId}-quitCondition`
   function updateColor(value) {
     setcolor(value)
   }
@@ -86,6 +88,9 @@ function NodePopUp({
     }
     if (document.getElementById(idRepeatBlock) !== null) {
       popUpNodeData.repeatBlock = document.getElementById(idRepeatBlock).value
+    }
+    if (document.getElementById(idQuitCondition) !== null) {
+      popUpNodeData.quitCondition = document.getElementById(idQuitCondition).value
     }
     saveHandler(popUpNodeData)
   }
@@ -243,6 +248,21 @@ function NodePopUp({
               </Grid>
             </>
           )}
+          {showQuitConditionField(agamaData) && (
+            <>
+              <Grid item xs={5}>
+                Quit Condition
+              </Grid>
+              <Grid item xs={7}>
+                <TextField
+                  id={idQuitCondition}
+                  variant="standard"
+                  placeholder="When data.guess is month"
+                  defaultValue={agamaData.quitCondition}
+                />
+              </Grid>
+            </>
+          )}
           {showRepeatBlockField(agamaData) && (
             <>
               <Grid item xs={5}>
@@ -282,7 +302,7 @@ function NodePopUp({
               id={idComment}
               defaultValue={agamaData.comment}
               minRows={3}
-              placeholder="Starting new flow..."
+              placeholder="e.g Starting flow..."
               style={{ width: 170 }}
             />
           </Grid>
