@@ -1,4 +1,5 @@
 import React, { useRef, useState, useCallback } from 'react'
+import { v4 as uuidv4 } from 'uuid';
 import ReactFlow, {
   addEdge,
   useNodesState,
@@ -37,10 +38,9 @@ const nodeTypes = {
 }
 
 let id = 0
-const getId = () => `dndnode_${id++}`
 const defaultViewport = { x: 10, y: 15, zoom: 1 }
 
-const initialNodeId = `start- ${getId()}`
+const initialNodeId = `start-${uuidv4()}`
 const initialNodes = [
   {
     id: initialNodeId,
@@ -113,7 +113,7 @@ const MainPanel = () => {
       })
 
       if (type === 'wowise') {
-        const parentId = 'WOD' + getId()
+        const parentId = 'WOD' + uuidv4()
         const pNode = {
           id: parentId,
           type,
@@ -122,7 +122,7 @@ const MainPanel = () => {
           sourcePosition: 'right',
           data: { id: parentId, type: `Agama-${type}-Flow` },
         }
-        const conditionId = `${parentId}_CONDITION-${getId()}`
+        const conditionId = `${parentId}_CONDITION-${uuidv4()}`
         const conditionNode = {
           id: conditionId,
           type: 'condition',
@@ -133,7 +133,7 @@ const MainPanel = () => {
           sourcePosition: 'right',
           data: { id: conditionId, type: `Agama-${type}-Node` },
         }
-        const actionOneId = `${parentId}_TRIGGER-${getId()}-SUCCESS`
+        const actionOneId = `${parentId}_TRIGGER-${uuidv4()}-SUCCESS`
         const actionOne = {
           id: actionOneId,
           type: 'trigger',
@@ -144,7 +144,7 @@ const MainPanel = () => {
           sourcePosition: 'right',
           data: { id: actionOneId, type: `Agama-${type}-Flow`, color: '#7be76d' },
         }
-        const actionTwoId = `${parentId}_TRIGGER-${getId()}-FAILURE`
+        const actionTwoId = `${parentId}_TRIGGER-${uuidv4()}-FAILURE`
         const actionTwo = {
           id: actionTwoId,
           type: 'trigger',
@@ -174,7 +174,7 @@ const MainPanel = () => {
         setEdges((eds) => eds.concat(edges[0]))
         setEdges((eds) => eds.concat(edges[1]))
       } else if (type === 'data') {
-        const newNodeId = 'Data-' + getId()
+        const newNodeId = 'Data-' + uuidv4()
         const newNode = {
           id: newNodeId,
           type,
@@ -186,7 +186,7 @@ const MainPanel = () => {
         setNodes((nds) => nds.concat(newNode))
       }
       else if (type === 'start') {
-        const newStartId = 'Start-' + getId()
+        const newStartId = 'Start-' + uuidv4()
         const newStartNode = {
           id: newStartId,
           type,
@@ -198,7 +198,7 @@ const MainPanel = () => {
         setNodes((nds) => nds.concat(newStartNode))
       }  
       else if (type === 'end') {
-        const newEndId = 'End-' + getId()
+        const newEndId = 'End-' + uuidv4()
         const newEndNode = {
           id: newEndId,
           type,
@@ -210,7 +210,7 @@ const MainPanel = () => {
         setNodes((nds) => nds.concat(newEndNode))
       }  
       else if (type === 'call') {
-        const newCallId = 'Call-' + getId()
+        const newCallId = 'Call-' + uuidv4()
         const newCallNode = {
           id: newCallId,
           type,
@@ -222,7 +222,7 @@ const MainPanel = () => {
         setNodes((nds) => nds.concat(newCallNode))
       }  
       else if (type === 'basepath') {
-        const newBasePathId = 'Basepath-' + getId()
+        const newBasePathId = 'Basepath-' +uuidv4()
         const newBasePathNode = {
           id: newBasePathId,
           type,
@@ -234,7 +234,7 @@ const MainPanel = () => {
         setNodes((nds) => nds.concat(newBasePathNode))
       }  
       else if (type === 'rrf') {
-        const newRrfId = 'RRF-' + getId()
+        const newRrfId = 'RRF-' + uuidv4()
         const newRrfNode = {
           id: newRrfId,
           type,
@@ -246,7 +246,7 @@ const MainPanel = () => {
         setNodes((nds) => nds.concat(newRrfNode))
       }
       else if (type === 'trigger') {
-        const newTriggerId = 'Trigger-' + getId()
+        const newTriggerId = 'Trigger-' +uuidv4()
         const newTriggerNode = {
           id: newTriggerId,
           type,
@@ -258,7 +258,7 @@ const MainPanel = () => {
         setNodes((nds) => nds.concat(newTriggerNode))
       }
       else if (type === 'repeat') {
-        const newRepeatId = 'Repeat-' + getId()
+        const newRepeatId = 'Repeat-' + uuidv4()
         const newRepeatNode = {
           id: newRepeatId,
           type,
@@ -270,7 +270,7 @@ const MainPanel = () => {
         setNodes((nds) => nds.concat(newRepeatNode))
       }
       else if (type === 'quit') {
-        const newQuitId = 'Quit-' + getId()
+        const newQuitId = 'Quit-' + uuidv4()
         const newQuitNode = {
           id: newQuitId,
           type,
@@ -282,7 +282,7 @@ const MainPanel = () => {
         setNodes((nds) => nds.concat(newQuitNode))
       }
       else {
-        const newNodeId = `${type}-${getId()}`
+        const newNodeId = `${type}-${uuidv4()}`
         const newNode = {
           id: newNodeId,
           type,

@@ -5,6 +5,7 @@ import Menu from '@mui/material/Menu'
 import MenuItem from '@mui/material/MenuItem'
 import AddCircleOutlined from '@mui/icons-material/AddCircleOutlined'
 import { useReactFlow } from 'reactflow'
+import { v4 as uuidv4 } from 'uuid';
 import { addCallNode } from './MenuOptions'
 
 export const AgamaNodeAddMenu = styled((props) => (
@@ -50,7 +51,7 @@ export const AgamaNodeAddMenu = styled((props) => (
   },
 }))
 
-export default function CustomizedMenus() {
+export default function CustomizedMenus({data}) {
   const [anchorEl, setAnchorEl] = React.useState(null)
   const open = Boolean(anchorEl)
   const handleClick = (event) => {
@@ -61,13 +62,11 @@ export default function CustomizedMenus() {
   }
 
   // testing with call node
-  let nodeId = 0
-  const getId = () => `dndnode_${nodeId++}`
   const xPos = useRef(0);
   const flowInstance = useReactFlow()
   // const sourceId = flowInstance.getNode
   const addCallNode = useCallback(() => {
-    const newCallId = 'Call-' + getId()
+    const newCallId = 'Call-' + uuidv4()
     xPos.current += 400;
 
     //new Call Node
@@ -86,11 +85,13 @@ export default function CustomizedMenus() {
     // edge
     const edges = [
       {
-        id: 'source-call',
-        source: '',
+        id: `${data.id}-${newCallId}- ${uuidv4()}`,
+        type:'straight',
+        source: data.id,
         target: newCallId,
       },
     ]
+    console.log('====ID====' + data.id);
     flowInstance.addNodes(newNode)
     flowInstance.setEdges((eds) => eds.concat(edges[0]))
   }, [])

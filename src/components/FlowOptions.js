@@ -52,7 +52,7 @@ function FlowOptions({ data }) {
   return (
     <>
       <div style={{ paddingLeft: '70px' }}>
-        <AgamaNodeAddMenu />
+        <AgamaNodeAddMenu data={data}/>
         <DeleteOutlined
           onClick={() => deleteNodeById(data.id)}
           style={{ color: '#FF0000' }}
