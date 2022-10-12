@@ -104,3 +104,24 @@ export const showRedirectLocationField = (agamaData) => {
   }
   return true
 }
+
+export const showWhenVariableField = (agamaData) => {
+  if (agamaData.type !== 'Agama-when-Node') {
+    return false
+  }
+  return true
+}
+
+export const showWhenConditionField = (agamaData) => {
+  if (agamaData.type !== 'Agama-when-Node') {
+    return false
+  }
+  return true
+}
+
+export const showWhenValueField = (agamaData) => {
+  if (agamaData.type !== 'Agama-when-Node') {
+    return false
+  }
+  return true
+}

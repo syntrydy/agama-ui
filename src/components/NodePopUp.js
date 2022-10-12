@@ -17,6 +17,9 @@ import {
   showRepeatBlockField,
   showQuitConditionField,
   showRedirectLocationField,
+  showWhenVariableField,
+  showWhenConditionField,
+  showWhenValueField,
 } from './Utils/NodePopUpUtils'
 
 function NodePopUp({
@@ -45,6 +48,9 @@ function NodePopUp({
   const idRepeatBlock = `${nodeId}-repeatBlock`
   const idQuitCondition = `${nodeId}-quitCondition`
   const idRedirectLocation = `${nodeId}-redirectLocation`
+  const idWhenVariable = `${nodeId}-whenVariable`
+  const idWhenCondition = `${nodeId}-whenCondition`
+  const idWhenValue = `${nodeId}-whenValue`
   function updateColor(value) {
     setcolor(value)
   }
@@ -96,6 +102,15 @@ function NodePopUp({
     }
     if (document.getElementById(idRedirectLocation) !== null) {
       popUpNodeData.redirectLocation = document.getElementById(idRedirectLocation).value
+    }
+    if (document.getElementById(idWhenVariable) !== null) {
+      popUpNodeData.whenVariable = document.getElementById(idWhenVariable).value
+    }
+    if (document.getElementById(idWhenCondition) !== null) {
+      popUpNodeData.whenCondition = document.getElementById(idWhenCondition).value
+    }
+    if (document.getElementById(idWhenValue) !== null) {
+      popUpNodeData.whenValue = document.getElementById(idWhenValue).value
     }
     saveHandler(popUpNodeData)
   }
@@ -263,6 +278,51 @@ function NodePopUp({
                   id={idQuitCondition}
                   variant="standard"
                   placeholder="When data.guess is month"
+                  defaultValue={agamaData.quitCondition}
+                />
+              </Grid>
+            </>
+          )}
+            {showWhenVariableField(agamaData) && (
+            <>
+              <Grid item xs={5}>
+                Variable
+              </Grid>
+              <Grid item xs={7}>
+                <TextField
+                  id={idWhenVariable}
+                  variant="standard"
+                  placeholder="e.g obj.success"
+                  defaultValue={agamaData.whenVariable}
+                />
+              </Grid>
+            </>
+          )}
+            {showWhenConditionField(agamaData) && (
+            <>
+              <Grid item xs={5}>
+                Condition
+              </Grid>
+              <Grid item xs={7}>
+                <TextField
+                  id={idWhenCondition}
+                  variant="standard"
+                  placeholder="e.g =="
+                  defaultValue={agamaData.whenCondition}
+                />
+              </Grid>
+            </>
+          )}
+            {showWhenValueField(agamaData) && (
+            <>
+              <Grid item xs={5}>
+                Value
+              </Grid>
+              <Grid item xs={7}>
+                <TextField
+                  id={idQuitCondition}
+                  variant="standard"
+                  placeholder="e.g value when true/false"
                   defaultValue={agamaData.quitCondition}
                 />
               </Grid>
