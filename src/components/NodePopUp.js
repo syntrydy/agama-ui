@@ -15,7 +15,8 @@ import {
   showLogMessageField,
   showMaxNumberOfIterationsField,
   showRepeatBlockField,
-  showQuitConditionField
+  showQuitConditionField,
+  showRedirectLocationField,
 } from './Utils/NodePopUpUtils'
 
 function NodePopUp({
@@ -43,6 +44,7 @@ function NodePopUp({
   const idMaxIteration = `${nodeId}-maxIteration`
   const idRepeatBlock = `${nodeId}-repeatBlock`
   const idQuitCondition = `${nodeId}-quitCondition`
+  const idRedirectLocation = `${nodeId}-redirectLocation`
   function updateColor(value) {
     setcolor(value)
   }
@@ -91,6 +93,9 @@ function NodePopUp({
     }
     if (document.getElementById(idQuitCondition) !== null) {
       popUpNodeData.quitCondition = document.getElementById(idQuitCondition).value
+    }
+    if (document.getElementById(idRedirectLocation) !== null) {
+      popUpNodeData.redirectLocation = document.getElementById(idRedirectLocation).value
     }
     saveHandler(popUpNodeData)
   }
@@ -275,6 +280,21 @@ function NodePopUp({
                   minRows={3}
                   placeholder="e.g data = RRF &apos;index.ftl&apos;"
                   style={{ width: 170 }}
+                />
+              </Grid>
+            </>
+          )}
+          {showRedirectLocationField(agamaData) && (
+            <>
+              <Grid item xs={5}>
+                Redirect Location
+              </Grid>
+              <Grid item xs={7}>
+                <TextField
+                  id={idRedirectLocation}
+                  variant="standard"
+                  placeholder="e.g &apos;https://login.twitter.com/?blah..&boo=...&apos;"
+                  defaultValue={agamaData.redirectLocation}
                 />
               </Grid>
             </>

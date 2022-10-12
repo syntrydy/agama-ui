@@ -98,3 +98,9 @@ export const showQuitConditionField = (agamaData) => {
   }
   return true
 }
+export const showRedirectLocationField = (agamaData) => {
+  if (agamaData.type !== 'Agama-rfac-Node') {
+    return false
+  }
+  return true
+}

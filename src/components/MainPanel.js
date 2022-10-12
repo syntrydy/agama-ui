@@ -12,9 +12,6 @@ import ReactFlow, {
 } from 'reactflow'
 import 'reactflow/dist/style.css'
 import Trigger from '../agamaNodes/Trigger/Trigger'
-import DataNode from '../agamaNodes/Data/DataNode'
-import Condition from '../agamaNodes/Condition/Condition'
-import WoWise from '../agamaNodes/WoWise/WoWise'
 import Call from '../agamaNodes/Call/Call'
 import EndFlow from '../agamaNodes/flow/EndFlow'
 import StartFlow from '../agamaNodes/flow/StartFlow'
@@ -22,13 +19,14 @@ import Rrf from '../agamaNodes/RRF/Rrf'
 import Quit from '../agamaNodes/Quit/Quit'
 import Repeat from '../agamaNodes/Repeat/Repeat'
 import LogNode from '../agamaNodes/Log/LogNode';
+import WhenNode from '../agamaNodes/When/WhenNode';
+import Rfac from '../agamaNodes/RFAC/Rfac';
 
 const nodeTypes = {
   call: Call,
-  condition: Condition,
+  when: WhenNode,
   trigger: Trigger,
-  wowise: WoWise,
-  data: DataNode,
+  rfac: Rfac,
   end: EndFlow,
   start: StartFlow,
   log: LogNode,
@@ -112,78 +110,17 @@ const MainPanel = () => {
         y: event.clientY - reactFlowBounds.top,
       })
 
-      if (type === 'wowise') {
-        const parentId = 'WOD' + uuidv4()
-        const pNode = {
-          id: parentId,
-          type,
-          position: { x: 300, y: 5 },
-          targetPosition: 'left',
-          sourcePosition: 'right',
-          data: { id: parentId, type: `Agama-${type}-Flow` },
-        }
-        const conditionId = `${parentId}_CONDITION-${uuidv4()}`
-        const conditionNode = {
-          id: conditionId,
-          type: 'condition',
-          position: { x: 20, y: 120 },
-          parentNode: parentId,
-          extent: 'parent',
-          targetPosition: 'left',
-          sourcePosition: 'right',
-          data: { id: conditionId, type: `Agama-${type}-Node` },
-        }
-        const actionOneId = `${parentId}_TRIGGER-${uuidv4()}-SUCCESS`
-        const actionOne = {
-          id: actionOneId,
-          type: 'trigger',
-          position: { x: 210, y: 5 },
-          parentNode: parentId,
-          extent: 'parent',
-          targetPosition: 'left',
-          sourcePosition: 'right',
-          data: { id: actionOneId, type: `Agama-${type}-Flow`, color: '#7be76d' },
-        }
-        const actionTwoId = `${parentId}_TRIGGER-${uuidv4()}-FAILURE`
-        const actionTwo = {
-          id: actionTwoId,
-          type: 'trigger',
-          position: { x: 210, y: 195 },
-          parentNode: parentId,
-          extent: 'parent',
-          targetPosition: 'left',
-          sourcePosition: 'right',
-          data: {id: actionTwoId, type: `Agama-${type}-Flow` },
-        }
-        const edges = [
-          {
-            id: 'condition-action1',
-            source: conditionId,
-            target: actionOneId,
-          },
-          {
-            id: 'condition-action2',
-            source: conditionId,
-            target: actionTwoId,
-          },
-        ]
-        setNodes((nds) => nds.concat(pNode))
-        setNodes((nds) => nds.concat(conditionNode))
-        setNodes((nds) => nds.concat(actionOne))
-        setNodes((nds) => nds.concat(actionTwo))
-        setEdges((eds) => eds.concat(edges[0]))
-        setEdges((eds) => eds.concat(edges[1]))
-      } else if (type === 'data') {
-        const newNodeId = 'Data-' + uuidv4()
-        const newNode = {
-          id: newNodeId,
+      if (type === 'when') {
+        const newWhenNodeId = 'When-' + uuidv4()
+        const newWhenNode = {
+          id: newWhenNodeId,
           type,
           position,
           targetPosition: 'left',
           sourcePosition: 'right',
-          data: { id: newNodeId, type: `Agama-${type}-Node` },
+          data: { id: newWhenNodeId, type: `Agama-${type}-Node` },
         }
-        setNodes((nds) => nds.concat(newNode))
+        setNodes((nds) => nds.concat(newWhenNode))
       }
       else if (type === 'start') {
         const newStartId = 'Start-' + uuidv4()
@@ -244,6 +181,18 @@ const MainPanel = () => {
           data: { id: newRrfId, type: `Agama-${type}-Node` },
         }
         setNodes((nds) => nds.concat(newRrfNode))
+      }
+      else if (type === 'rfac') {
+        const newRfacId = 'RFAC-' + uuidv4()
+        const newRfacNode = {
+          id: newRfacId,
+          type,
+          position,
+          targetPosition: 'left',
+          sourcePosition: 'right',
+          data: { id: newRfacId, type: `Agama-${type}-Node` },
+        }
+        setNodes((nds) => nds.concat(newRfacNode))
       }
       else if (type === 'trigger') {
         const newTriggerId = 'Trigger-' +uuidv4()
@@ -324,7 +273,7 @@ const MainPanel = () => {
               if (n.type === 'end') return '#ff0072'
               if (n.type === 'log') return 'rgb(255, 137, 59)'
               if (n.type === 'trigger') return 'rgb(224, 79, 79)'
-              if (n.type === 'data') return 'rgb(88, 184, 248)'
+              if (n.type === 'rfac') return 'rgb(88, 184, 248)'
               if (n.type === 'condition') return 'rgb(0, 195, 255)'
               if (n.type === 'call') return 'rgb(185, 50, 212)'
               if (n.type === 'rrf') return 'rgb(77, 2, 70)'

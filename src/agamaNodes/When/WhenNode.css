@@ -1,0 +1,14 @@
+.when-node {
+  width: 0;
+  height: 0;
+  border-left: 100px solid transparent;
+  border-right: 100px solid transparent;
+  border-top: 140px solid rgb(161, 247, 150);
+}
+
+.contents {
+  text-align: center;
+  top: -130px;
+  left: -70px;
+  position: relative;
+}

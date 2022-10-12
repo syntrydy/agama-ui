@@ -62,23 +62,23 @@ const Sidebar = () => {
         >
           <Grid item xs={6}>
             <div
-              className="subflow-item"
-              onDragStart={(event) => onDragStart(event, 'wowise')}
+              className="when"
+              onDragStart={(event) => onDragStart(event, 'when')}
               draggable
             >
-              W/O WISE
+              When
             </div>
           </Grid>
         </AgamaTooltip>
 
-        <AgamaTooltip title="Data node" placement="top-start">
+        <AgamaTooltip title="RFAC node" placement="top-start">
           <Grid item xs={6}>
             <div
-              className="data"
-              onDragStart={(event) => onDragStart(event, 'data')}
+              className="rfac"
+              onDragStart={(event) => onDragStart(event, 'rfac')}
               draggable
             >
-              Data Node
+              RFAC
             </div>
           </Grid>
         </AgamaTooltip>

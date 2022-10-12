@@ -37,27 +37,27 @@
   border-radius: 5px;
 }
 
-.data {
-  background: rgb(88, 184, 248);
+.rfac {
+  background: rgb(10, 85, 85);
   width: 75px;
   height: 55px;
   color: #ffffff;
   align-items: center;
   text-align: center;
-  padding: 2px;
+  padding-top: 15px;
   margin-top: 15px;
   margin-left: 10px;
   border-radius: 5px;
 }
 
-.subflow-item {
-  background: #ffffff;
+.when{
+  background: rgb(161, 247, 150);
   width: 75px;
   height: 55px;
-  border: 2px solid rgb(161, 247, 150);
+  color: #ffffff;
   align-items: center;
   text-align: center;
-  padding: 2px;
+  padding-top: 15px;
   margin-top: 15px;
   margin-left: 10px;
   border-radius: 5px;
