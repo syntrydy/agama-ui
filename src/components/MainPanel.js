@@ -18,10 +18,10 @@ import WoWise from '../agamaNodes/WoWise/WoWise'
 import Call from '../agamaNodes/Call/Call'
 import EndFlow from '../agamaNodes/flow/EndFlow'
 import StartFlow from '../agamaNodes/flow/StartFlow'
-import Basepath from '../agamaNodes/Basepath/Basepath'
 import Rrf from '../agamaNodes/RRF/Rrf'
 import Quit from '../agamaNodes/Quit/Quit'
 import Repeat from '../agamaNodes/Repeat/Repeat'
+import LogNode from '../agamaNodes/Log/LogNode';
 
 const nodeTypes = {
   call: Call,
@@ -31,7 +31,7 @@ const nodeTypes = {
   data: DataNode,
   end: EndFlow,
   start: StartFlow,
-  basepath: Basepath,
+  log: LogNode,
   rrf: Rrf,
   repeat:Repeat,
   quit: Quit,
@@ -217,21 +217,21 @@ const MainPanel = () => {
           position,
           targetPosition: 'left',
           sourcePosition: 'right',
-          data: { id: newCallId, type: `Agama-${type}-Flow` },
+          data: { id: newCallId, type: `Agama-${type}-Node` },
         }
         setNodes((nds) => nds.concat(newCallNode))
       }  
-      else if (type === 'basepath') {
-        const newBasePathId = 'Basepath-' +uuidv4()
-        const newBasePathNode = {
-          id: newBasePathId,
+      else if (type === 'log') {
+        const newLogNodeId = 'Log-' +uuidv4()
+        const newLogNode = {
+          id: newLogNodeId,
           type,
           position,
           targetPosition: 'left',
           sourcePosition: 'right',
-          data: { id: newBasePathId, type: `Agama-${type}-Flow` },
+          data: { id: newLogNodeId, type: `Agama-${type}-Node` },
         }
-        setNodes((nds) => nds.concat(newBasePathNode))
+        setNodes((nds) => nds.concat(newLogNode))
       }  
       else if (type === 'rrf') {
         const newRrfId = 'RRF-' + uuidv4()
@@ -241,7 +241,7 @@ const MainPanel = () => {
           position,
           targetPosition: 'left',
           sourcePosition: 'right',
-          data: { id: newRrfId, type: `Agama-${type}-Flow` },
+          data: { id: newRrfId, type: `Agama-${type}-Node` },
         }
         setNodes((nds) => nds.concat(newRrfNode))
       }
@@ -253,7 +253,7 @@ const MainPanel = () => {
           position,
           targetPosition: 'left',
           sourcePosition: 'right',
-          data: { id: newTriggerId, type: `Agama-${type}-Flow` },
+          data: { id: newTriggerId, type: `Agama-${type}-Node` },
         }
         setNodes((nds) => nds.concat(newTriggerNode))
       }
@@ -265,7 +265,7 @@ const MainPanel = () => {
           position,
           targetPosition: 'left',
           sourcePosition: 'right',
-          data: { id: newRepeatId, type: `Agama-${type}-Flow` },
+          data: { id: newRepeatId, type: `Agama-${type}-Node` },
         }
         setNodes((nds) => nds.concat(newRepeatNode))
       }
@@ -277,7 +277,7 @@ const MainPanel = () => {
           position,
           targetPosition: 'left',
           sourcePosition: 'right',
-          data: { id: newQuitId, type: `Agama-${type}-Flow` },
+          data: { id: newQuitId, type: `Agama-${type}-Node` },
         }
         setNodes((nds) => nds.concat(newQuitNode))
       }
@@ -322,7 +322,7 @@ const MainPanel = () => {
             nodeStrokeColor={(n) => {
               if (n.type === 'start') return '#0041d0'
               if (n.type === 'end') return '#ff0072'
-              if (n.type === 'basepath') return 'rgb(255, 137, 59)'
+              if (n.type === 'log') return 'rgb(255, 137, 59)'
               if (n.type === 'trigger') return 'rgb(224, 79, 79)'
               if (n.type === 'data') return 'rgb(88, 184, 248)'
               if (n.type === 'condition') return 'rgb(0, 195, 255)'

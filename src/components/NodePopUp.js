@@ -3,6 +3,19 @@ import Popover from '@mui/material/Popover'
 import { TextareaAutosize, Box, Button, TextField, Chip } from '@mui/material'
 import Grid from '@mui/material/Grid'
 import ColorPicker from 'material-ui-color-picker'
+import {
+  showColorField,
+  showJavaMethodNameField,
+  showParamsField,
+  showFlowNameField,
+  showBasepathField,
+  showFlowFileNameField,
+  showAssignedVariableNameField,
+  showTemplateNameField,
+  showLogMessageField,
+  showMaxNumberOfIterationsField,
+  showRepeatBlockField,
+} from './Utils/NodePopUpUtils'
 
 function NodePopUp({
   open,
@@ -16,33 +29,65 @@ function NodePopUp({
   const popUpNodeData = {}
   const nodeId = agamaData.id
   const nodeType = agamaData.type
-  const idName = `${nodeId}-name`
-  const idDesc = `${nodeId}-desc`
+  const idName = `${nodeId}-flowname`
+  const idBasepath = `${nodeId}-basepath`
   const idColor = `${nodeId}-color`
   const idComment = `${nodeId}-comment`
+  const idFlowFileName = `${nodeId}-flowfilename`
+  const idAssignedVariableName = `${nodeId}-assignedvariableName`
+  const idJavaMethodName = `${nodeId}-javaMethodName`
+  const idParams = `${nodeId}-params`
+  const idLogMessage = `${nodeId}-logMessage`
+  const idTemplateName = `${nodeId}-templateName`
+  const idMaxIteration = `${nodeId}-maxIteration`
+  const idRepeatBlock = `${nodeId}-repeatBlock`
   function updateColor(value) {
     setcolor(value)
   }
 
   function doSave() {
     popUpNodeData.type = nodeType
-    popUpNodeData.name = document.getElementById(idName).value
-    popUpNodeData.description = document.getElementById(idDesc).value
+    if (document.getElementById(idName) !== null) {
+      popUpNodeData.flowname = document.getElementById(idName).value
+    }
+    if (document.getElementById(idBasepath) !== null) {
+      popUpNodeData.basepath = document.getElementById(idBasepath).value
+    }
+    if (document.getElementById(idFlowFileName) !== null) {
+      popUpNodeData.flowFileName = document.getElementById(idFlowFileName).value
+    }
+    if (document.getElementById(idAssignedVariableName) !== null) {
+      popUpNodeData.asssignedVariableName = document.getElementById(
+        idAssignedVariableName,
+      ).value
+    }
     if (document.getElementById(idColor) !== null) {
-      popUpNodeData.color = document.getElementById(idColor).value 
+      popUpNodeData.color = document.getElementById(idColor).value
     }
-    popUpNodeData.comment = document.getElementById(idComment).value
+    if (document.getElementById(idComment) !== null) {
+      popUpNodeData.comment = document.getElementById(idComment).value
+    }
+    if (document.getElementById(idJavaMethodName) !== null) {
+      popUpNodeData.javaMethodName = document.getElementById(
+        idJavaMethodName,
+      ).value
+    }
+    if (document.getElementById(idParams) !== null) {
+      popUpNodeData.params = document.getElementById(idParams).value
+    }
+    if (document.getElementById(idTemplateName) !== null) {
+      popUpNodeData.templateName = document.getElementById(idTemplateName).value
+    }
+    if (document.getElementById(idLogMessage) !== null) {
+      popUpNodeData.logMessage = document.getElementById(idLogMessage).value
+    }
+    if (document.getElementById(idMaxIteration) !== null) {
+      popUpNodeData.maxIteration = document.getElementById(idMaxIteration).value
+    }
+    if (document.getElementById(idRepeatBlock) !== null) {
+      popUpNodeData.repeatBlock = document.getElementById(idRepeatBlock).value
+    }
     saveHandler(popUpNodeData)
-  }
-  function showColorField(agamaData) {
-    if (
-      agamaData.type === 'Agama-start-Flow' ||
-      agamaData.type === 'Agama-quit-Node' ||
-      agamaData.type === 'Agama-end-Flow'
-    ) {
-      return false
-    }
-    return true
   }
   return (
     <Popover
@@ -63,26 +108,157 @@ function NodePopUp({
           <Grid item xs={7}>
             <Chip label={agamaData.type} color="primary" variant="outlined" />
           </Grid>
-          <Grid item xs={5}>
-            Name
-          </Grid>
-          <Grid item xs={7}>
-            <TextField
-              id={idName}
-              variant="standard"
-              defaultValue={agamaData.name}
-            />
-          </Grid>
-          <Grid item xs={5}>
-            Description
-          </Grid>
-          <Grid item xs={7}>
-            <TextField
-              id={idDesc}
-              variant="standard"
-              defaultValue={agamaData.description}
-            />
-          </Grid>
+          {showFlowNameField(agamaData) && (
+            <>
+              <Grid item xs={5}>
+                Flow Name
+              </Grid>
+              <Grid item xs={7}>
+                <TextField
+                  id={idName}
+                  variant="standard"
+                  placeholder="Test-flow"
+                  defaultValue={agamaData.flowname}
+                />
+              </Grid>
+            </>
+          )}
+          {showBasepathField(agamaData) && (
+            <>
+              <Grid item xs={5}>
+                Basepath
+              </Grid>
+              <Grid item xs={7}>
+                <TextField
+                  id={idBasepath}
+                  variant="standard"
+                  placeholder="e.g sample/otp-email"
+                  defaultValue={agamaData.basepath}
+                />
+              </Grid>
+            </>
+          )}
+          {showFlowFileNameField(agamaData) && (
+            <>
+              <Grid item xs={5}>
+                Flow File Name
+              </Grid>
+              <Grid item xs={7}>
+                <TextField
+                  id={idFlowFileName}
+                  variant="standard"
+                  placeholder="e.g index"
+                  defaultValue={agamaData.flowFileName}
+                />
+              </Grid>
+            </>
+          )}
+          {showJavaMethodNameField(agamaData) && (
+            <>
+              <Grid item xs={5}>
+                Java method name
+              </Grid>
+              <Grid item xs={7}>
+                <TextField
+                  id={idJavaMethodName}
+                  variant="standard"
+                  placeholder="e.g io.jans.agama"
+                  defaultValue={agamaData.javaMethodName}
+                />
+              </Grid>
+            </>
+          )}
+          {showTemplateNameField(agamaData) && (
+            <>
+              <Grid item xs={5}>
+                Template name
+              </Grid>
+              <Grid item xs={7}>
+                <TextField
+                  id={idTemplateName}
+                  variant="standard"
+                  placeholder="e.g otp.flth"
+                  defaultValue={agamaData.templateName}
+                />
+              </Grid>
+            </>
+          )}
+          {showParamsField(agamaData) && (
+            <>
+              <Grid item xs={5}>
+                Params (space seperated)
+              </Grid>
+              <Grid item xs={7}>
+                <TextField
+                  id={idParams}
+                  variant="standard"
+                  placeholder="e.g userId"
+                  defaultValue={agamaData.params}
+                />
+              </Grid>
+            </>
+          )}
+          {showAssignedVariableNameField(agamaData) && (
+            <>
+              <Grid item xs={5}>
+                Assigned Variable Name
+              </Grid>
+              <Grid item xs={7}>
+                <TextField
+                  id={idAssignedVariableName}
+                  variant="standard"
+                  placeholder="e.g obj = Trigger.io.jans..."
+                  defaultValue={agamaData.asssignedVariableName}
+                />
+              </Grid>
+            </>
+          )}
+          {showLogMessageField(agamaData) && (
+            <>
+              <Grid item xs={5}>
+                Log Message
+              </Grid>
+              <Grid item xs={7}>
+                <TextField
+                  id={idLogMessage}
+                  variant="standard"
+                  placeholder="e.g Hi there"
+                  defaultValue={agamaData.logMessage}
+                />
+              </Grid>
+            </>
+          )}
+          {showMaxNumberOfIterationsField(agamaData) && (
+            <>
+              <Grid item xs={5}>
+                Maximum Iteration
+              </Grid>
+              <Grid item xs={7}>
+                <TextField
+                  id={idMaxIteration}
+                  variant="standard"
+                  placeholder="e.g 3"
+                  defaultValue={agamaData.maxIteration}
+                />
+              </Grid>
+            </>
+          )}
+          {showRepeatBlockField(agamaData) && (
+            <>
+              <Grid item xs={5}>
+                Code block to repeat
+              </Grid>
+              <Grid item xs={7}>
+                <TextareaAutosize
+                  id={idRepeatBlock}
+                  defaultValue={agamaData.repeatBlock}
+                  minRows={3}
+                  placeholder="e.g data = RRF &apos;index.ftl&apos;"
+                  style={{ width: 170 }}
+                />
+              </Grid>
+            </>
+          )}
           {showColorField(agamaData) && (
             <>
               <Grid item xs={5}>
@@ -98,7 +274,6 @@ function NodePopUp({
               </Grid>
             </>
           )}
-
           <Grid item xs={5}>
             Comment
           </Grid>
@@ -107,7 +282,7 @@ function NodePopUp({
               id={idComment}
               defaultValue={agamaData.comment}
               minRows={3}
-              placeholder="Add a comment"
+              placeholder="Starting new flow..."
               style={{ width: 170 }}
             />
           </Grid>
@@ -115,7 +290,7 @@ function NodePopUp({
         <Button onClick={doSave} style={{ marginLeft: '-10px' }}>
           Save
         </Button>
-        <Button onClick={handleClose} style={{ color: 'red '}}>
+        <Button onClick={handleClose} style={{ color: 'red ' }}>
           Cancel
         </Button>
       </Box>

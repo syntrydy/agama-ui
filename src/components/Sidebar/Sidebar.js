@@ -44,14 +44,14 @@ const Sidebar = () => {
           </Grid>
         </AgamaTooltip>
 
-        <AgamaTooltip title="Basepath node" placement="top-start">
+        <AgamaTooltip title="Use for logging" placement="top-start">
           <Grid item xs={6}>
             <div
-              className="basepath-item"
-              onDragStart={(event) => onDragStart(event, 'basepath')}
+              className="log-item"
+              onDragStart={(event) => onDragStart(event, 'log')}
               draggable
             >
-              Base path
+              Log Node
             </div>
           </Grid>
         </AgamaTooltip>

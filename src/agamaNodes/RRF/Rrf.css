@@ -1,8 +1,8 @@
 .rrf-node {
-  height: 250px;
-  width: 205px;
+  height: 85px;
+  width: 140px;
   border: 1px solid rgb(255, 255, 255);
-  padding: 5px;
+  padding-left: 5px;
   color: #ffffff;
   border-radius: 5px;
   background: rgb(77, 2, 70);

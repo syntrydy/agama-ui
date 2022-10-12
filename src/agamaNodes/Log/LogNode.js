@@ -1,17 +1,16 @@
 import React from 'react'
 import { Handle, Position } from 'reactflow'
-import './Basepath.css'
+import './LogNode.css'
 import 'reactflow/dist/style.css'
 import { AgamaTooltip } from '../../components/AgamaTooltip/AgamaTooltip'
 import FlowOptions from '../../components/FlowOptions'
-function Basepath({ data }) {
+function LogNode({ data }) {
   return (
-    <AgamaTooltip title="The Basepath directive determines where flow assets reside">
-      <div className="basepath">
+    <AgamaTooltip title="use for logging">
+      <div className="log">
         <Handle type="source" position={Position.Right} />
         <div>
-          <label htmlFor="basepath">Basepath</label>
-          <input id="start" name="start" placeholder="e.g sample/otp-email" />
+          <label htmlFor="log">Log</label>
         </div>
         <Handle
           type="target"
@@ -23,5 +22,4 @@ function Basepath({ data }) {
     </AgamaTooltip>
   )
 }
-
-export default Basepath
+export default LogNode

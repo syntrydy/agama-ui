@@ -9,7 +9,7 @@ function EndFlow({ data }) {
   return (
     <AgamaTooltip title="Ends a flow">
       <div className="end-node" style={{ backgroundColor: data.color }}>
-        <label htmlFor="end">End Flow</label>
+        <label htmlFor="end">Finish</label>
         <Handle
           type="target"
           position={Position.Left}
