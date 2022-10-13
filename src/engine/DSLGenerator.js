@@ -31,7 +31,7 @@ function codeGenerator(tree, space) {
    //console.log(JSON.stringify(node))
     if(tree.agamaData.type == 'Agama-start-Flow' ) {
         codeArr.push(space + "Flow " + tree.agamaData.flowname)
-        codeArr.push(space + "  Basepath " + tree.agamaData.basepath)
+        codeArr.push(space + "  Basepath " + "\"" +tree.agamaData.basepath + "\"")
     }
 
     if(tree.agamaData.type == 'Agama-trigger-Node' ) {
@@ -63,7 +63,7 @@ function codeGenerator(tree, space) {
     }
 
     if(tree.agamaData.type == 'Agama-log-Node' ) {
-      codeArr.push(space + "Log " + tree.agamaData.logMessage)
+      codeArr.push(space + "Log " + "\"" +tree.agamaData.logMessage + "\"")
    }
 
 }
