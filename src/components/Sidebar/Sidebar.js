@@ -89,7 +89,7 @@ const Sidebar = () => {
         >
           <Grid item xs={6}>
             <div
-              className="action"
+              className="trigger"
               onDragStart={(event) => onDragStart(event, 'trigger')}
               draggable
             >

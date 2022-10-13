@@ -51,9 +51,7 @@ function FlowOptions({ data }) {
       nds.map((node) => {
         if (node.id === nodeId) {
           node.data.agamaData = popUpNodeData
-          //node.data = popUpNodeData
         }
-        console.log('-------node update------' +JSON.stringify(node));
         return node
       }),
     )
@@ -66,7 +64,7 @@ function FlowOptions({ data }) {
   return (
     <>
       <div style={{ paddingLeft: '70px' }}>
-        <AgamaNodeAddMenu data={data}/>
+        <AgamaNodeAddMenu data={data} agamaData={agamaData}/>
         <DeleteOutlined
           onClick={() => deleteNodeById(data.id)}
           style={{ color: '#FF0000' }}

@@ -6,6 +6,7 @@ import MenuItem from '@mui/material/MenuItem'
 import AddCircleOutlined from '@mui/icons-material/AddCircleOutlined'
 import { useReactFlow } from 'reactflow'
 import { v4 as uuidv4 } from 'uuid'
+import Alert from '@mui/material/Alert'
 
 export const AgamaNodeAddMenu = styled((props) => (
   <Menu
@@ -308,8 +309,18 @@ export default function CustomizedMenus({ data }) {
         target: newFinishNodeId,
       },
     ]
-    flowInstance.addNodes(newFinishNode)
-    flowInstance.setEdges((eds) => eds.concat(edges[0]))
+    // data.type === 'Agama-start-Flow' ?
+    if (data.type === 'Agama-start-Flow') {
+      console.log('-------invalid connection-----')
+      return (
+        <Alert variant="outlined" severity="error">
+          Invalid connection — Can't connect Start to Finish node!
+        </Alert>
+      )
+    } else {
+      flowInstance.addNodes(newFinishNode)
+      flowInstance.setEdges((eds) => eds.concat(edges[0]))
+    }
   }, [])
 
   // Quit Node

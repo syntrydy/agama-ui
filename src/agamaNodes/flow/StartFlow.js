@@ -5,6 +5,17 @@ import 'reactflow/dist/style.css'
 import { AgamaTooltip } from '../../components/AgamaTooltip/AgamaTooltip'
 import FlowOptions from '../../components/FlowOptions'
 function StartFlow({ data }) {
+  let defaultFlowName = ''
+  if (!data.hasOwnProperty('agamaData')) {
+    data.agamaData = {
+      id: data.id,
+      type: data.type,
+      flowname: defaultFlowName,
+    }
+  }
+  if (data.agamaData.hasOwnProperty('flowname')) {
+    defaultFlowName = data.agamaData.flowname
+  }
   const isValidConnection = (connection) => {
     if (
       connection.source.includes('start') &&
@@ -19,8 +30,8 @@ function StartFlow({ data }) {
     <AgamaTooltip title="starts a new flow">
       <div className="start-node">
         <label htmlFor="start-flow">Flow</label>
-        {/* <br/>
-        <label htmlFor="flow-name">{data.flowname}</label> */}
+        <br/>
+        <label htmlFor="flow-name">{data.agamaData.flowname}</label>
         <Handle
           type="source"
           position={Position.Right}

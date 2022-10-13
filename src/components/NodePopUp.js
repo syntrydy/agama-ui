@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import Popover from '@mui/material/Popover'
 import { TextareaAutosize, Box, Button, TextField, Chip } from '@mui/material'
 import Grid from '@mui/material/Grid'
-import ColorPicker from 'material-ui-color-picker'
 import {
   showColorField,
   showJavaMethodNameField,
@@ -29,7 +28,8 @@ function NodePopUp({
   agamaData,
   saveHandler,
 }) {
-  const [color, setcolor] = useState(agamaData.color)
+  const defaultColor = '#000fff'
+  const [color, setcolor] = useState(defaultColor)
   const popUpNodeData = {}
   const nodeId = agamaData.id
   const nodeType = agamaData.type
@@ -350,11 +350,12 @@ function NodePopUp({
                 Node Color
               </Grid>
               <Grid item xs={7}>
-                <ColorPicker
+                <input
+                  type="color"
                   id={idColor}
-                  defaultValue="#000"
-                  value={color}
-                  onChange={(color) => updateColor(color)}
+                  defaultValue={color}
+                  onChange={() => updateColor(color)}
+                  onClick={() => updateColor(color)}
                 />
               </Grid>
             </>

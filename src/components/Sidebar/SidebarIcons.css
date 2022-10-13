@@ -1,5 +1,5 @@
-.action {
-  background: rgb(224, 79, 79);
+.trigger {
+  background: rgb(124, 49, 49);
   width: 75px;
   height: 55px;
   align-items: center;
@@ -92,7 +92,7 @@
 .quit  {
   background: rgb(255, 255, 255);
   width: 75px;
-  border: 2px solid rgb(15, 0, 102);
+  border: 2px solid rgb(3, 0, 22);
   height: 55px;
   align-items: center;
   text-align: center;
