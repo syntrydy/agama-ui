@@ -77,11 +77,10 @@ export default function CustomizedMenus({ data }) {
       type: 'call',
       data: {
         id: newCallId,
-        parentId: data.id,
         type: 'Agama-call-Node',
+        parentId: data.id,
       },
     }
-
     // edge
     const edges = [
       {
@@ -91,7 +90,7 @@ export default function CustomizedMenus({ data }) {
         target: newCallId,
       },
     ]
-    console.log("=====new call node====" +JSON.stringify(newCallNode));
+    console.log('=====new call node====' + JSON.stringify(newCallNode))
     flowInstance.addNodes(newCallNode)
     flowInstance.setEdges((eds) => eds.concat(edges[0]))
   }, [])
@@ -110,6 +109,7 @@ export default function CustomizedMenus({ data }) {
       data: {
         id: newTriggerNodeId,
         type: 'Agama-trigger-Node',
+        parentId: data.id,
       },
     }
 
@@ -140,6 +140,7 @@ export default function CustomizedMenus({ data }) {
       data: {
         id: newRrfId,
         type: 'Agama-rrf-Node',
+        parentId: data.id,
       },
     }
 
@@ -170,6 +171,7 @@ export default function CustomizedMenus({ data }) {
       data: {
         id: newRfacNodeId,
         type: 'Agama-rfac-Node',
+        parentId: data.id,
       },
     }
 
@@ -200,6 +202,7 @@ export default function CustomizedMenus({ data }) {
       data: {
         id: newWhenNodeId,
         type: 'Agama-when-Node',
+        parentId: data.id,
       },
     }
 
@@ -230,6 +233,7 @@ export default function CustomizedMenus({ data }) {
       data: {
         id: newRepeatNodeId,
         type: 'Agama-repeat-Node',
+        parentId: data.id,
       },
     }
 
@@ -260,6 +264,7 @@ export default function CustomizedMenus({ data }) {
       data: {
         id: newLogNodeId,
         type: 'Agama-log-Node',
+        parentId: data.id,
       },
     }
 
@@ -290,6 +295,7 @@ export default function CustomizedMenus({ data }) {
       data: {
         id: newFinishNodeId,
         type: 'Agama-finish-Flow',
+        parentId: data.id,
       },
     }
 
@@ -320,6 +326,7 @@ export default function CustomizedMenus({ data }) {
       data: {
         id: newQuitNodeId,
         type: 'Agama-quit-Node',
+        parentId: data.id,
       },
     }
 

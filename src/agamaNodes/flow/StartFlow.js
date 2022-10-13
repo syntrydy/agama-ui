@@ -19,6 +19,8 @@ function StartFlow({ data }) {
     <AgamaTooltip title="starts a new flow">
       <div className="start-node">
         <label htmlFor="start-flow">Flow</label>
+        {/* <br/>
+        <label htmlFor="flow-name">{data.flowname}</label> */}
         <Handle
           type="source"
           position={Position.Right}
