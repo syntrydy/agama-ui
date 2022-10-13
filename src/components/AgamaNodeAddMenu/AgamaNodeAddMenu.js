@@ -305,6 +305,37 @@ export default function CustomizedMenus({ data }) {
     flowInstance.addNodes(newFinishNode)
     flowInstance.setEdges((eds) => eds.concat(edges[0]))
   }, [])
+
+  // Quit Node
+  const addQuitNode = useCallback(() => {
+    const newQuitNodeId = 'Quit-' + uuidv4()
+    xPos.current += 400
+    const newQuitNode = {
+      id: newQuitNodeId,
+      position: {
+        x: xPos.current,
+        y: 250,
+      },
+      type: 'quit',
+      data: {
+        id: newQuitNodeId,
+        type: 'Agama-quit-Node',
+      },
+    }
+
+    // edge
+    const edges = [
+      {
+        id: `${data.id}-${newQuitNodeId}- ${uuidv4()}`,
+        type: 'straight',
+        source: data.id,
+        target: newQuitNodeId,
+      },
+    ]
+    flowInstance.addNodes(newQuitNode)
+    flowInstance.setEdges((eds) => eds.concat(edges[0]))
+  }, [])
+
   return (
     <div>
       <Button
@@ -343,6 +374,9 @@ export default function CustomizedMenus({ data }) {
         </MenuItem>
         <MenuItem onClick={addWhenNode} disableRipple>
           When
+        </MenuItem>
+        <MenuItem onClick={addQuitNode} disableRipple>
+          Quit
         </MenuItem>
         <MenuItem onClick={addRepeatNode} disableRipple>
           Repeat
