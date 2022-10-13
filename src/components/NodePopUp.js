@@ -14,12 +14,11 @@ import {
   showTemplateNameField,
   showLogMessageField,
   showMaxNumberOfIterationsField,
-  showRepeatBlockField,
-  showQuitConditionField,
   showRedirectLocationField,
   showWhenVariableField,
   showWhenConditionField,
   showWhenValueField,
+  showReturnVariableField,
 } from './Utils/NodePopUpUtils'
 
 function NodePopUp({
@@ -45,12 +44,11 @@ function NodePopUp({
   const idLogMessage = `${nodeId}-logMessage`
   const idTemplateName = `${nodeId}-templateName`
   const idMaxIteration = `${nodeId}-maxIteration`
-  const idRepeatBlock = `${nodeId}-repeatBlock`
-  const idQuitCondition = `${nodeId}-quitCondition`
   const idRedirectLocation = `${nodeId}-redirectLocation`
   const idWhenVariable = `${nodeId}-whenVariable`
   const idWhenCondition = `${nodeId}-whenCondition`
   const idWhenValue = `${nodeId}-whenValue`
+  const idReturnVariable = `${nodeId}-returnVariable`
   function updateColor(value) {
     setcolor(value)
   }
@@ -94,23 +92,26 @@ function NodePopUp({
     if (document.getElementById(idMaxIteration) !== null) {
       popUpNodeData.maxIteration = document.getElementById(idMaxIteration).value
     }
-    if (document.getElementById(idRepeatBlock) !== null) {
-      popUpNodeData.repeatBlock = document.getElementById(idRepeatBlock).value
-    }
-    if (document.getElementById(idQuitCondition) !== null) {
-      popUpNodeData.quitCondition = document.getElementById(idQuitCondition).value
-    }
     if (document.getElementById(idRedirectLocation) !== null) {
-      popUpNodeData.redirectLocation = document.getElementById(idRedirectLocation).value
+      popUpNodeData.redirectLocation = document.getElementById(
+        idRedirectLocation,
+      ).value
     }
     if (document.getElementById(idWhenVariable) !== null) {
       popUpNodeData.whenVariable = document.getElementById(idWhenVariable).value
     }
     if (document.getElementById(idWhenCondition) !== null) {
-      popUpNodeData.whenCondition = document.getElementById(idWhenCondition).value
+      popUpNodeData.whenCondition = document.getElementById(
+        idWhenCondition,
+      ).value
     }
     if (document.getElementById(idWhenValue) !== null) {
       popUpNodeData.whenValue = document.getElementById(idWhenValue).value
+    }
+    if (document.getElementById(idReturnVariable) !== null) {
+      popUpNodeData.returnVariable = document.getElementById(
+        idReturnVariable,
+      ).value
     }
     saveHandler(popUpNodeData)
   }
@@ -268,22 +269,7 @@ function NodePopUp({
               </Grid>
             </>
           )}
-          {showQuitConditionField(agamaData) && (
-            <>
-              <Grid item xs={5}>
-                Quit Condition
-              </Grid>
-              <Grid item xs={7}>
-                <TextField
-                  id={idQuitCondition}
-                  variant="standard"
-                  placeholder="When data.guess is month"
-                  defaultValue={agamaData.quitCondition}
-                />
-              </Grid>
-            </>
-          )}
-            {showWhenVariableField(agamaData) && (
+          {showWhenVariableField(agamaData) && (
             <>
               <Grid item xs={5}>
                 Variable
@@ -298,7 +284,7 @@ function NodePopUp({
               </Grid>
             </>
           )}
-            {showWhenConditionField(agamaData) && (
+          {showWhenConditionField(agamaData) && (
             <>
               <Grid item xs={5}>
                 Condition
@@ -313,33 +299,17 @@ function NodePopUp({
               </Grid>
             </>
           )}
-            {showWhenValueField(agamaData) && (
+          {showWhenValueField(agamaData) && (
             <>
               <Grid item xs={5}>
                 Value
               </Grid>
               <Grid item xs={7}>
                 <TextField
-                  id={idQuitCondition}
+                  id={idWhenValue}
                   variant="standard"
-                  placeholder="e.g value when true/false"
-                  defaultValue={agamaData.quitCondition}
-                />
-              </Grid>
-            </>
-          )}
-          {showRepeatBlockField(agamaData) && (
-            <>
-              <Grid item xs={5}>
-                Code block to repeat
-              </Grid>
-              <Grid item xs={7}>
-                <TextareaAutosize
-                  id={idRepeatBlock}
-                  defaultValue={agamaData.repeatBlock}
-                  minRows={3}
-                  placeholder="e.g data = RRF &apos;index.ftl&apos;"
-                  style={{ width: 170 }}
+                  placeholder="e.g true"
+                  defaultValue={agamaData.whenValue}
                 />
               </Grid>
             </>
@@ -353,8 +323,23 @@ function NodePopUp({
                 <TextField
                   id={idRedirectLocation}
                   variant="standard"
-                  placeholder="e.g &apos;https://login.twitter.com/?blah..&boo=...&apos;"
+                  placeholder="e.g 'https://login.twitter.com/?blah..&boo=...'"
                   defaultValue={agamaData.redirectLocation}
+                />
+              </Grid>
+            </>
+          )}
+          {showReturnVariableField(agamaData) && (
+            <>
+              <Grid item xs={5}>
+                Return variable
+              </Grid>
+              <Grid item xs={7}>
+                <TextField
+                  id={idReturnVariable}
+                  variant="standard"
+                  placeholder="e.g false"
+                  defaultValue={agamaData.returnVariable}
                 />
               </Grid>
             </>

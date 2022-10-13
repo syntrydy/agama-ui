@@ -77,6 +77,7 @@ export default function CustomizedMenus({ data }) {
       type: 'call',
       data: {
         id: newCallId,
+        parentId: data.id,
         type: 'Agama-call-Node',
       },
     }
@@ -90,6 +91,7 @@ export default function CustomizedMenus({ data }) {
         target: newCallId,
       },
     ]
+    console.log("=====new call node====" +JSON.stringify(newCallNode));
     flowInstance.addNodes(newCallNode)
     flowInstance.setEdges((eds) => eds.concat(edges[0]))
   }, [])

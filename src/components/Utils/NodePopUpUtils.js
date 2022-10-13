@@ -44,6 +44,7 @@ export const showAssignedVariableNameField = (agamaData) => {
   if (
     agamaData.type === 'Agama-trigger-Node' ||
     agamaData.type === 'Agama-rrf-Node' ||
+    agamaData.type === 'Agama-repeat-Node' ||
     agamaData.type === 'Agama-call-Node'
   ) {
     return true
@@ -86,18 +87,6 @@ export const showMaxNumberOfIterationsField = (agamaData) => {
   }
   return true
 }
-export const showRepeatBlockField = (agamaData) => {
-  if (agamaData.type !== 'Agama-repeat-Node') {
-    return false
-  }
-  return true
-}
-export const showQuitConditionField = (agamaData) => {
-  if (agamaData.type !== 'Agama-quit-Node') {
-    return false
-  }
-  return true
-}
 export const showRedirectLocationField = (agamaData) => {
   if (agamaData.type !== 'Agama-rfac-Node') {
     return false
@@ -121,6 +110,13 @@ export const showWhenConditionField = (agamaData) => {
 
 export const showWhenValueField = (agamaData) => {
   if (agamaData.type !== 'Agama-when-Node') {
+    return false
+  }
+  return true
+}
+
+export const showReturnVariableField = (agamaData) => {
+  if (agamaData.type !== 'Agama-finish-Flow') {
     return false
   }
   return true

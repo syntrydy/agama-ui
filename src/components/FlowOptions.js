@@ -13,9 +13,21 @@ function FlowOptions({ data }) {
       id: data.id,
       type: data.type,
       name: '',
-      description: '',
+      basepath: '',
       color: '',
       comment: '',
+      flowfilename: '',
+      assignedvariableName: '',
+      javaMethodName: '',
+      params: '',
+      logMessage: '',
+      templateName: '',
+      maxIteration: '',
+      redirectLocation: '',
+      whenVariable: '',
+      whenCondition: '',
+      whenValue: '',
+      returnVariable: '',
     }
   }
   function canDelete(node) {

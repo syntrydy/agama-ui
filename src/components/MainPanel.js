@@ -279,7 +279,7 @@ const MainPanel = () => {
               if (n.type === 'rrf') return 'rgb(77, 2, 70)'
             }}
             nodeColor={(n) => {
-              if (n.type === 'wowise') return 'rgb(161, 247, 150)'
+              if (n.type === 'when') return 'rgb(161, 247, 150)'
               return '#fff'
             }}
           />
