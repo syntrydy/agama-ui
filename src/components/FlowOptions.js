@@ -51,7 +51,9 @@ function FlowOptions({ data }) {
       nds.map((node) => {
         if (node.id === nodeId) {
           node.data.agamaData = popUpNodeData
+          //node.data = popUpNodeData
         }
+        console.log('-------node update------' +JSON.stringify(node));
         return node
       }),
     )
