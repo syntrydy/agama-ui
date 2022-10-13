@@ -21,6 +21,9 @@ import Repeat from '../agamaNodes/Repeat/Repeat'
 import LogNode from '../agamaNodes/Log/LogNode';
 import WhenNode from '../agamaNodes/When/WhenNode';
 import Rfac from '../agamaNodes/RFAC/Rfac';
+import Button from '@mui/material/Button';
+import processNodeData from '../engine/DSLGenerator';
+import DSLCodeModal from './DSLCodeModal';
 
 const nodeTypes = {
   call: Call,
@@ -31,7 +34,7 @@ const nodeTypes = {
   start: StartFlow,
   log: LogNode,
   rrf: Rrf,
-  repeat:Repeat,
+  repeat: Repeat,
   quit: Quit,
 }
 
@@ -44,7 +47,7 @@ const initialNodes = [
     id: initialNodeId,
     type: 'start',
     sourcePosition: 'right',
-    data: {id: initialNodeId, type: "Agama-start-Flow"},
+    data: { id: initialNodeId, type: "Agama-start-Flow" },
     position: { x: 250, y: 250 },
   },
 ]
@@ -55,6 +58,8 @@ const MainPanel = () => {
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes)
   const [edges, setEdges, onEdgesChange] = useEdgesState([])
   const [reactFlowInstance, setReactFlowInstance] = useState(null)
+  const [generatedCodeArr, setGeneratedCodeArr] = useState([])
+  const [showCodeModal, setShowCodeModal] = useState(false)
   const edgeUpdateSuccessful = useRef(true)
   const onEdgeUpdateStart = useCallback(() => {
     edgeUpdateSuccessful.current = false
@@ -70,6 +75,10 @@ const MainPanel = () => {
       setEdges((eds) => eds.filter((e) => e.id !== edge.id))
     }
     edgeUpdateSuccessful.current = true
+  }, [])
+
+  const closeModal =  useCallback(() => {
+    setShowCodeModal(false)
   }, [])
 
   const onConnect = useCallback((params) => {
@@ -133,7 +142,7 @@ const MainPanel = () => {
           data: { id: newStartId, type: `Agama-${type}-Flow` },
         }
         setNodes((nds) => nds.concat(newStartNode))
-      }  
+      }
       else if (type === 'end') {
         const newEndId = 'End-' + uuidv4()
         const newEndNode = {
@@ -145,7 +154,7 @@ const MainPanel = () => {
           data: { id: newEndId, type: `Agama-${type}-Flow` },
         }
         setNodes((nds) => nds.concat(newEndNode))
-      }  
+      }
       else if (type === 'call') {
         const newCallId = 'Call-' + uuidv4()
         const newCallNode = {
@@ -157,9 +166,9 @@ const MainPanel = () => {
           data: { id: newCallId, type: `Agama-${type}-Node` },
         }
         setNodes((nds) => nds.concat(newCallNode))
-      }  
+      }
       else if (type === 'log') {
-        const newLogNodeId = 'Log-' +uuidv4()
+        const newLogNodeId = 'Log-' + uuidv4()
         const newLogNode = {
           id: newLogNodeId,
           type,
@@ -169,7 +178,7 @@ const MainPanel = () => {
           data: { id: newLogNodeId, type: `Agama-${type}-Node` },
         }
         setNodes((nds) => nds.concat(newLogNode))
-      }  
+      }
       else if (type === 'rrf') {
         const newRrfId = 'RRF-' + uuidv4()
         const newRrfNode = {
@@ -195,7 +204,7 @@ const MainPanel = () => {
         setNodes((nds) => nds.concat(newRfacNode))
       }
       else if (type === 'trigger') {
-        const newTriggerId = 'Trigger-' +uuidv4()
+        const newTriggerId = 'Trigger-' + uuidv4()
         const newTriggerNode = {
           id: newTriggerId,
           type,
@@ -284,7 +293,15 @@ const MainPanel = () => {
             }}
           />
         </ReactFlow>
+        <div className="controls">
+          <Button variant="contained" onClick={() => {
+            let generatedCodeArr = processNodeData(flowInstance.getNodes())
+            setGeneratedCodeArr(generatedCodeArr)
+            setShowCodeModal(true)
+          }}>Generate Code</Button>
+        </div>
       </div>
+      <DSLCodeModal generatedCodeArr={generatedCodeArr} showCodeModal={showCodeModal} closeModal={closeModal}/>
     </div>
   )
 }
