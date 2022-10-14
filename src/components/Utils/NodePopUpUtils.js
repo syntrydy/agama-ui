@@ -2,7 +2,7 @@ export const showColorField = (agamaData) => {
   if (
     agamaData.type === 'Agama-start-Flow' ||
     agamaData.type === 'Agama-quit-Node' ||
-    agamaData.type === 'Agama-end-Flow'
+    agamaData.type === 'Agama-finish-Flow'
   ) {
     return false
   }
@@ -12,7 +12,7 @@ export const showColorField = (agamaData) => {
 export const showDescriptionField = (agamaData) => {
   if (
     agamaData.type === 'Agama-start-Flow' ||
-    agamaData.type === 'Agama-end-Flow'
+    agamaData.type === 'Agama-finish-Flow'
   ) {
     return false
   }
