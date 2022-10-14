@@ -93,6 +93,7 @@ const MainPanel = () => {
       nds.map((node) => {
         if (node.id === targetId) {
           node.data = newTarget.data
+          node.data.parentId = newTarget.data.agamasource
         }
         return node
       }),

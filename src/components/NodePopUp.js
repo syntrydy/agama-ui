@@ -114,6 +114,7 @@ function NodePopUp({
       ).value
     }
     saveHandler(popUpNodeData)
+    handleClose()
   }
   return (
     <Popover
