@@ -144,7 +144,7 @@ function NodePopUp({
                 <TextField
                   id={idName}
                   variant="standard"
-                  placeholder="Test-flow"
+                  placeholder="eg: test-flow"
                   defaultValue={agamaData.flowname}
                 />
               </Grid>
@@ -189,7 +189,7 @@ function NodePopUp({
                 <TextField
                   id={idJavaMethodName}
                   variant="standard"
-                  placeholder="e.g io.jans.agama"
+                  placeholder="e.g io.jans.agama.samples.EmailOTPUtil#emailOf"
                   defaultValue={agamaData.javaMethodName}
                 />
               </Grid>
@@ -206,6 +206,21 @@ function NodePopUp({
                   variant="standard"
                   placeholder="e.g otp.flth"
                   defaultValue={agamaData.templateName}
+                />
+              </Grid>
+            </>
+          )}
+          {showLogMessageField(agamaData) && (
+            <>
+              <Grid item xs={5}>
+                Log Message
+              </Grid>
+              <Grid item xs={7}>
+                <TextField
+                  id={idLogMessage}
+                  variant="standard"
+                  placeholder="e.g Hi there"
+                  defaultValue={agamaData.logMessage}
                 />
               </Grid>
             </>
@@ -234,27 +249,13 @@ function NodePopUp({
                 <TextField
                   id={idAssignedVariableName}
                   variant="standard"
-                  placeholder="e.g obj = Trigger.io.jans..."
+                  placeholder="e.g obj"
                   defaultValue={agamaData.asssignedVariableName}
                 />
               </Grid>
             </>
           )}
-          {showLogMessageField(agamaData) && (
-            <>
-              <Grid item xs={5}>
-                Log Message
-              </Grid>
-              <Grid item xs={7}>
-                <TextField
-                  id={idLogMessage}
-                  variant="standard"
-                  placeholder="e.g Hi there"
-                  defaultValue={agamaData.logMessage}
-                />
-              </Grid>
-            </>
-          )}
+          
           {showMaxNumberOfIterationsField(agamaData) && (
             <>
               <Grid item xs={5}>
