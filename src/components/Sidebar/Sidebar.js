@@ -36,7 +36,7 @@ const Sidebar = () => {
           <Grid item xs={6}>
             <div
               className="end"
-              onDragStart={(event) => onDragStart(event, 'end')}
+              onDragStart={(event) => onDragStart(event, 'finish')}
               draggable
             >
               End flow

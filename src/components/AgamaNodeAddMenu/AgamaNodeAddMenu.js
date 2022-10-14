@@ -292,7 +292,7 @@ export default function CustomizedMenus({ data }) {
         x: xPos.current,
         y: 250,
       },
-      type: 'end',
+      type: 'finish',
       data: {
         id: newFinishNodeId,
         type: 'Agama-finish-Flow',
@@ -309,18 +309,8 @@ export default function CustomizedMenus({ data }) {
         target: newFinishNodeId,
       },
     ]
-    // data.type === 'Agama-start-Flow' ?
-    if (data.type === 'Agama-start-Flow') {
-      console.log('-------invalid connection-----')
-      return (
-        <Alert variant="outlined" severity="error">
-          Invalid connection — Can't connect Start to Finish node!
-        </Alert>
-      )
-    } else {
-      flowInstance.addNodes(newFinishNode)
-      flowInstance.setEdges((eds) => eds.concat(edges[0]))
-    }
+    flowInstance.addNodes(newFinishNode)
+    flowInstance.setEdges((eds) => eds.concat(edges[0]))
   }, [])
 
   // Quit Node
@@ -353,6 +343,14 @@ export default function CustomizedMenus({ data }) {
     flowInstance.addNodes(newQuitNode)
     flowInstance.setEdges((eds) => eds.concat(edges[0]))
   }, [])
+
+  const canShowFinishItem = (data) => {
+    if (data.type === 'Agama-finish-Flow' || data.type === 'Agama-start-Flow') {
+      return false
+    } else {
+      return true
+    }
+  }
 
   return (
     <div>
@@ -399,9 +397,11 @@ export default function CustomizedMenus({ data }) {
         <MenuItem onClick={addRepeatNode} disableRipple>
           Repeat
         </MenuItem>
-        <MenuItem onClick={addFinishNode} disableRipple>
-          Finish
-        </MenuItem>
+        {canShowFinishItem(data) && (
+          <MenuItem onClick={addFinishNode} disableRipple>
+            Finish
+          </MenuItem>
+        )}
       </AgamaNodeAddMenu>
     </div>
   )
