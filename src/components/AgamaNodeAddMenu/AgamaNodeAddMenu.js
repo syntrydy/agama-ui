@@ -66,7 +66,7 @@ export default function CustomizedMenus({ data }) {
   }
 
   // When node condition
-  const [condition, setCondition] = useState('WhenTrue')
+  const [condition, setCondition] = useState('')
   const handleChange = (event) => {
     setCondition(event.target.value)
   }
