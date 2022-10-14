@@ -21,7 +21,7 @@ function dfs(tree, space) {
     }
     codeGenerator(tree.dataObj, space)
     if(tree.dataObj.type == 'Agama-when-Node' || tree.dataObj.type == 'Agama-repeat-Node') {
-        space = space + "\t"
+        space = space + "\t\t"
     }
     dfs(tree.children[0], space)
     dfs(tree.children[1], "")
@@ -63,7 +63,11 @@ function codeGenerator(tree, space) {
     }
 
     if(tree.agamaData.type == 'Agama-log-Node' ) {
-      codeArr.push(space + "Log " + "\"" +tree.agamaData.logMessage + "\"")
+       let element = space + "Log " + "\"" +tree.agamaData.logMessage + "\""
+       if(tree.agamaData.params != undefined || tree.agamaData.params != "") {
+         element += (" " + tree.agamaData.params)
+       }
+      codeArr.push(element)
    }
 
 }

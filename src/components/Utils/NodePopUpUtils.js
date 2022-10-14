@@ -58,10 +58,19 @@ export const showJavaMethodNameField = (agamaData) => {
   }
   return true
 }
+
+export const showLogMessageField = (agamaData) => {
+  if (agamaData.type !== 'Agama-log-Node') {
+    return false
+  }
+  return true
+}
+
 export const showParamsField = (agamaData) => {
   if (
     agamaData.type === 'Agama-call-Node' ||
-    agamaData.type === 'Agama-rrf-Node'
+    agamaData.type === 'Agama-rrf-Node' ||
+    agamaData.type === 'Agama-log-Node'
   ) {
     return true
   }
@@ -75,12 +84,6 @@ export const showTemplateNameField = (agamaData) => {
   return true
 }
 
-export const showLogMessageField = (agamaData) => {
-  if (agamaData.type !== 'Agama-log-Node') {
-    return false
-  }
-  return true
-}
 export const showMaxNumberOfIterationsField = (agamaData) => {
   if (agamaData.type !== 'Agama-repeat-Node') {
     return false
