@@ -30,7 +30,7 @@ const nodeTypes = {
   when: WhenNode,
   trigger: Trigger,
   rfac: Rfac,
-  finish: EndFlow,
+  end: EndFlow,
   start: StartFlow,
   log: LogNode,
   rrf: Rrf,
@@ -40,8 +40,7 @@ const nodeTypes = {
 
 let id = 0
 const defaultViewport = { x: 10, y: 15, zoom: 1 }
-
-const initialNodeId = `Start-${uuidv4()}`
+const initialNodeId = `start-${uuidv4()}`
 const initialNodes = [
   {
     id: initialNodeId,
@@ -94,6 +93,7 @@ const MainPanel = () => {
       nds.map((node) => {
         if (node.id === targetId) {
           node.data = newTarget.data
+          node.data.parentId = newTarget.data.agamasource
         }
         return node
       }),
@@ -143,8 +143,8 @@ const MainPanel = () => {
         }
         setNodes((nds) => nds.concat(newStartNode))
       }
-      else if (type === 'finish') {
-        const newEndId = 'Finish-' + uuidv4()
+      else if (type === 'end') {
+        const newEndId = 'End-' + uuidv4()
         const newEndNode = {
           id: newEndId,
           type,
@@ -279,7 +279,7 @@ const MainPanel = () => {
           <MiniMap
             nodeStrokeColor={(n) => {
               if (n.type === 'start') return '#0041d0'
-              if (n.type === 'finish') return '#ff0072'
+              if (n.type === 'end') return '#ff0072'
               if (n.type === 'log') return 'rgb(255, 137, 59)'
               if (n.type === 'trigger') return 'rgb(224, 79, 79)'
               if (n.type === 'rfac') return 'rgb(88, 184, 248)'
