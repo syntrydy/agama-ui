@@ -41,7 +41,7 @@ const nodeTypes = {
 let id = 0
 const defaultViewport = { x: 10, y: 15, zoom: 1 }
 
-const initialNodeId = `start-${uuidv4()}`
+const initialNodeId = `Start-${uuidv4()}`
 const initialNodes = [
   {
     id: initialNodeId,

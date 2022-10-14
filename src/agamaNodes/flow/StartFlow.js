@@ -18,8 +18,8 @@ function StartFlow({ data }) {
   }
   const isValidConnection = (connection) => {
     if (
-      connection.source.includes('start') &&
-      connection.target.includes('finish')
+      connection.source.includes('Start') &&
+      connection.target.includes('Finish')
     ) {
       return false
     } else {

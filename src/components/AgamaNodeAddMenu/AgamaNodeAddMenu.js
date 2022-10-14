@@ -6,7 +6,6 @@ import MenuItem from '@mui/material/MenuItem'
 import AddCircleOutlined from '@mui/icons-material/AddCircleOutlined'
 import { useReactFlow } from 'reactflow'
 import { v4 as uuidv4 } from 'uuid'
-import Alert from '@mui/material/Alert'
 
 export const AgamaNodeAddMenu = styled((props) => (
   <Menu
