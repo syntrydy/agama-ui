@@ -7,7 +7,7 @@ import FlowOptions from '../../components/FlowOptions'
 
 function EndFlow({ data }) {
   return (
-    <AgamaTooltip title="Ends a flow">
+    <AgamaTooltip title="Ends a flow" placement="top-start">
       <div className="end-node" style={{ backgroundColor: data.color }}>
         <label htmlFor="end">Finish</label>
         <Handle

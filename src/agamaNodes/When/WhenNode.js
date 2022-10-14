@@ -7,7 +7,7 @@ const handleStyleRight = { top: 1 }
 
 function WhenNode({ data }) {
   return (
-    <AgamaTooltip title="When node">
+    <AgamaTooltip title="When node" placement="top-start">
       <div className="when-node">
         <Handle
           type="source"

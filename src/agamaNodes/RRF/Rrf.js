@@ -7,7 +7,10 @@ import FlowOptions from '../../components/FlowOptions'
 
 function Rrf({ data }) {
   return (
-    <AgamaTooltip title="RRF(Render-Reply-Fetch) use this to abstract the process of rendering a UI template">
+    <AgamaTooltip
+      title="RRF(Render-Reply-Fetch) use this to abstract the process of rendering a UI template"
+      placement="top-start"
+    >
       <div className="rrf-node">
         <Handle type="source" position={Position.Right} />
         <div>

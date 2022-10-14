@@ -7,7 +7,7 @@ import FlowOptions from '../../components/FlowOptions'
 
 function Quit({ data }) {
   return (
-    <AgamaTooltip title="Quit">
+    <AgamaTooltip title="Quit" placement="top-start">
       <div className="quit-node">
       <label htmlFor="quit-node">Quit Node</label>
         <Handle type="source" position={Position.Right} />

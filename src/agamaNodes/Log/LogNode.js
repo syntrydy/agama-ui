@@ -6,7 +6,7 @@ import { AgamaTooltip } from '../../components/AgamaTooltip/AgamaTooltip'
 import FlowOptions from '../../components/FlowOptions'
 function LogNode({ data }) {
   return (
-    <AgamaTooltip title="use for logging">
+    <AgamaTooltip title="use for logging" placement="top-start">
       <div className="log">
         <Handle type="source" position={Position.Right} />
         <div>

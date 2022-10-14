@@ -7,7 +7,7 @@ import FlowOptions from '../../components/FlowOptions'
 
 function Trigger({ data }) {
   return (
-    <AgamaTooltip title="triggers an action">
+    <AgamaTooltip title="triggers an action" placement="top-start">
       <div className="trigger-node" style={{ backgroundColor: data.color }}>
         <Handle type="source" position={Position.Right} />
         <div>

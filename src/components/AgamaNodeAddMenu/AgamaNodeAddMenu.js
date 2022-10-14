@@ -1,4 +1,4 @@
-import React, { useCallback, useRef } from 'react'
+import React, { useCallback, useRef, useState } from 'react'
 import { styled, alpha } from '@mui/material/styles'
 import Button from '@mui/material/Button'
 import Menu from '@mui/material/Menu'
@@ -6,6 +6,11 @@ import MenuItem from '@mui/material/MenuItem'
 import AddCircleOutlined from '@mui/icons-material/AddCircleOutlined'
 import { useReactFlow } from 'reactflow'
 import { v4 as uuidv4 } from 'uuid'
+import { Box } from '@mui/material'
+import Radio from '@mui/material/Radio'
+import RadioGroup from '@mui/material/RadioGroup'
+import FormControlLabel from '@mui/material/FormControlLabel'
+import FormLabel from '@mui/material/FormLabel'
 
 export const AgamaNodeAddMenu = styled((props) => (
   <Menu
@@ -60,6 +65,20 @@ export default function CustomizedMenus({ data }) {
     setAnchorEl(null)
   }
 
+  // When node condition
+  const [condition, setCondition] = useState('')
+  const handleChange = (event) => {
+    setCondition(event.target.value)
+  }
+  console.log(condition)
+
+  const isWhenNode = (data) => {
+    if (data.type === 'Agama-when-Node') {
+      return true
+    }
+    return false
+  }
+
   // Node Menu generator
   const xPos = useRef(0)
   const flowInstance = useReactFlow()
@@ -90,7 +109,6 @@ export default function CustomizedMenus({ data }) {
         target: newCallId,
       },
     ]
-    console.log('=====new call node====' + JSON.stringify(newCallNode))
     flowInstance.addNodes(newCallNode)
     flowInstance.setEdges((eds) => eds.concat(edges[0]))
   }, [])
@@ -234,6 +252,7 @@ export default function CustomizedMenus({ data }) {
         id: newRepeatNodeId,
         type: 'Agama-repeat-Node',
         parentId: data.id,
+        whenCondition: condition,
       },
     }
 
@@ -246,6 +265,7 @@ export default function CustomizedMenus({ data }) {
         target: newRepeatNodeId,
       },
     ]
+    console.log('------repeat node----' +JSON.stringify(newRepeatNode));
     flowInstance.addNodes(newRepeatNode)
     flowInstance.setEdges((eds) => eds.concat(edges[0]))
   }, [])
@@ -352,7 +372,7 @@ export default function CustomizedMenus({ data }) {
   }
 
   return (
-    <div>
+    <>
       <Button
         id="agama-node-add"
         aria-controls={open ? 'demo-customized-menu' : undefined}
@@ -372,6 +392,28 @@ export default function CustomizedMenus({ data }) {
         open={open}
         onClose={handleClose}
       >
+        {isWhenNode(data) && (
+          <Box style={{ paddingLeft: '16px' }}>
+            <FormLabel id="to-condition">To condition</FormLabel>
+            <RadioGroup
+              aria-labelledby="demo-row-radio-buttons-group-label"
+              name="row-radio-buttons-group"
+              value={condition}
+              onChange={handleChange}
+            >
+              <FormControlLabel
+                value="WhenTrue"
+                control={<Radio />}
+                label="When True"
+              />
+              <FormControlLabel
+                value="WhenFalse"
+                control={<Radio />}
+                label="When False"
+              />
+            </RadioGroup>
+          </Box>
+        )}
         <MenuItem onClick={addCallNode} disableRipple>
           Call
         </MenuItem>
@@ -402,6 +444,6 @@ export default function CustomizedMenus({ data }) {
           </MenuItem>
         )}
       </AgamaNodeAddMenu>
-    </div>
+    </>
   )
 }

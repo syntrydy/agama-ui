@@ -7,7 +7,7 @@ import FlowOptions from '../../components/FlowOptions'
 
 function Rfac({ data }) {
   return (
-    <AgamaTooltip title="Redirect and Fetch at callback">
+    <AgamaTooltip title="Redirect and Fetch at callback" placement="top-start">
       <div className="rfac-node">
         <Handle type="source" position={Position.Right} />
         <div>

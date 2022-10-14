@@ -27,7 +27,7 @@ function StartFlow({ data }) {
     }
   }
   return (
-    <AgamaTooltip title="starts a new flow">
+    <AgamaTooltip title="starts a new flow" placement="top-start">
       <div className="start-node">
         <label htmlFor="start-flow">Flow</label>
         <br/>

@@ -7,7 +7,7 @@ import FlowOptions from '../../components/FlowOptions'
 function Repeat({ data }) {
   return (
     <AgamaTooltip title="Repeat block">
-      <div className="repeat-node">
+      <div className="repeat-node" placement="top-start">
         <Handle type="source" position={Position.Right} />
         <div>
           <label htmlFor="repeat-node">Repeat</label>

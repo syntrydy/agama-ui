@@ -18,7 +18,7 @@ function Call({ data }) {
     defaultColor = data.agamaData.color
   }
   return (
-    <AgamaTooltip title="Calls a java class">
+    <AgamaTooltip title="Calls a java class" placement="top-start">
       <div className="call-node" style={{ backgroundColor: defaultColor }}>
         <Handle type="source" position={Position.Right} />
         <div>
