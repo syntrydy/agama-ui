@@ -46,8 +46,8 @@ const initialNodes = [
     id: initialNodeId,
     type: 'start',
     sourcePosition: 'right',
-    data: { id: initialNodeId, type: "Agama-start-Flow" },
-    position: { x: 100, y: 150 },
+    data: { id: initialNodeId, type: "Agama-start-Flow", position: { x: 100, y: 250 } },
+    position: { x: 100, y: 250 },
   },
 ]
 
@@ -76,7 +76,7 @@ const MainPanel = () => {
     edgeUpdateSuccessful.current = true
   }, [])
 
-  const closeModal =  useCallback(() => {
+  const closeModal = useCallback(() => {
     setShowCodeModal(false)
   }, [])
 
@@ -103,6 +103,20 @@ const MainPanel = () => {
   const onDragOver = useCallback((event) => {
     event.preventDefault()
     event.dataTransfer.dropEffect = 'move'
+  }, [])
+
+  const onNodeDrag = useCallback((event, node) => {
+    event.preventDefault()
+    
+    setNodes((nds) =>
+      nds.map((nd) => {
+        if (nd.id === node.id) {
+          nd.data.position.x = node.position.x
+          nd.data.position.y = node.position.y
+        }
+        return nd
+      }),
+    )
   }, [])
 
   const onDrop = useCallback(
@@ -270,6 +284,7 @@ const MainPanel = () => {
           onInit={setReactFlowInstance}
           onDrop={onDrop}
           deleteKeyCode={['Backspace', 'Delete']}
+          onNodeDrag={onNodeDrag}
           onDragOver={onDragOver}
           nodeTypes={nodeTypes}
           defaultViewport={defaultViewport}
@@ -301,7 +316,7 @@ const MainPanel = () => {
           }}>Generate Code</Button>
         </div>
       </div>
-      <DSLCodeModal generatedCodeArr={generatedCodeArr} showCodeModal={showCodeModal} closeModal={closeModal}/>
+      <DSLCodeModal generatedCodeArr={generatedCodeArr} showCodeModal={showCodeModal} closeModal={closeModal} />
     </div>
   )
 }

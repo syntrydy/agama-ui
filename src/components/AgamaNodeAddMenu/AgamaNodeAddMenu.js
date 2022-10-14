@@ -80,24 +80,29 @@ export default function CustomizedMenus({ data }) {
   }
 
   // Node Menu generator
-  const xPos = useRef(0)
+  //const xPos = useRef(0)
   const flowInstance = useReactFlow()
 
   // Call Node
   const addCallNode = useCallback(() => {
     const newCallId = 'Call-' + uuidv4()
-    xPos.current += 400
+    const xPos = data.position.x + 200
+    const yPos = data.position.y
     const newCallNode = {
       id: newCallId,
       position: {
-        x: xPos.current,
-        y: 250,
+        x: xPos,
+        y: yPos,
       },
       type: 'call',
       data: {
         id: newCallId,
         type: 'Agama-call-Node',
         parentId: data.id,
+        position: {
+          x: xPos,
+          y: yPos,
+        },
       },
     }
     // edge
@@ -116,18 +121,23 @@ export default function CustomizedMenus({ data }) {
   // Trigger Node
   const addTriggerNode = useCallback(() => {
     const newTriggerNodeId = 'Trigger-' + uuidv4()
-    xPos.current += 400
+    const xPos = data.position.x + 200
+    const yPos = data.position.y
     const newTriggerNode = {
       id: newTriggerNodeId,
       position: {
-        x: xPos.current,
-        y: 250,
+        x: xPos,
+        y: yPos,
       },
       type: 'trigger',
       data: {
         id: newTriggerNodeId,
         type: 'Agama-trigger-Node',
         parentId: data.id,
+        position: {
+          x: xPos,
+          y: yPos,
+        },
       },
     }
 
@@ -147,18 +157,23 @@ export default function CustomizedMenus({ data }) {
   // RRF Node
   const addRrfNode = useCallback(() => {
     const newRrfId = 'RRF-' + uuidv4()
-    xPos.current += 400
+    const xPos = data.position.x + 200
+    const yPos = data.position.y
     const newRrfNode = {
       id: newRrfId,
       position: {
-        x: xPos.current,
-        y: 250,
+        x: xPos,
+        y: yPos,
       },
       type: 'rrf',
       data: {
         id: newRrfId,
         type: 'Agama-rrf-Node',
         parentId: data.id,
+        position: {
+          x: xPos,
+          y: yPos,
+        },
       },
     }
 
@@ -178,18 +193,23 @@ export default function CustomizedMenus({ data }) {
   // RFAC Node
   const addRfacNode = useCallback(() => {
     const newRfacNodeId = 'RFAC-' + uuidv4()
-    xPos.current += 400
+    const xPos = data.position.x + 200
+    const yPos = data.position.y
     const newRfacNode = {
       id: newRfacNodeId,
       position: {
-        x: xPos.current,
-        y: 250,
+        x: xPos,
+        y: yPos,
       },
       type: 'rfac',
       data: {
         id: newRfacNodeId,
         type: 'Agama-rfac-Node',
         parentId: data.id,
+        position: {
+          x: xPos,
+          y: yPos,
+        },
       },
     }
 
@@ -209,18 +229,23 @@ export default function CustomizedMenus({ data }) {
   // When Node
   const addWhenNode = useCallback(() => {
     const newWhenNodeId = 'When-' + uuidv4()
-    xPos.current += 400
+    const xPos = data.position.x + 200
+    const yPos = data.position.y
     const newWhenNode = {
       id: newWhenNodeId,
       position: {
-        x: xPos.current,
-        y: 250,
+        x: xPos,
+        y: yPos,
       },
       type: 'when',
       data: {
         id: newWhenNodeId,
         type: 'Agama-when-Node',
         parentId: data.id,
+        position: {
+          x: xPos,
+          y: yPos,
+        },
       },
     }
 
@@ -240,12 +265,13 @@ export default function CustomizedMenus({ data }) {
   // Repeat Node
   const addRepeatNode = useCallback(() => {
     const newRepeatNodeId = 'Repeat-' + uuidv4()
-    xPos.current += 400
+    const xPos = data.position.x + 200
+    const yPos = data.position.y
     const newRepeatNode = {
       id: newRepeatNodeId,
       position: {
-        x: xPos.current,
-        y: 250,
+        x: xPos,
+        y: yPos,
       },
       type: 'repeat',
       data: {
@@ -253,6 +279,10 @@ export default function CustomizedMenus({ data }) {
         type: 'Agama-repeat-Node',
         parentId: data.id,
         whenCondition: condition,
+        position: {
+          x: xPos,
+          y: yPos,
+        },
       },
     }
 
@@ -273,18 +303,23 @@ export default function CustomizedMenus({ data }) {
   // Log Node
   const addLogNode = useCallback(() => {
     const newLogNodeId = 'Log-' + uuidv4()
-    xPos.current += 400
+    const xPos = data.position.x + 200
+    const yPos = data.position.y
     const newLogNode = {
       id: newLogNodeId,
       position: {
-        x: xPos.current,
-        y: 250,
+        x: xPos,
+        y: yPos,
       },
       type: 'log',
       data: {
         id: newLogNodeId,
         type: 'Agama-log-Node',
         parentId: data.id,
+        position: {
+          x: xPos,
+          y: yPos,
+        },
       },
     }
 
@@ -304,18 +339,23 @@ export default function CustomizedMenus({ data }) {
   // Finish Node
   const addFinishNode = useCallback(() => {
     const newFinishNodeId = 'Finish-' + uuidv4()
-    xPos.current += 400
+    const xPos = data.position.x + 200
+    const yPos = data.position.y
     const newFinishNode = {
       id: newFinishNodeId,
       position: {
-        x: xPos.current,
-        y: 250,
+        x: xPos,
+        y: yPos,
       },
       type: 'finish',
       data: {
         id: newFinishNodeId,
         type: 'Agama-finish-Flow',
         parentId: data.id,
+        position: {
+          x: xPos,
+          y: yPos,
+        },
       },
     }
 
@@ -335,18 +375,23 @@ export default function CustomizedMenus({ data }) {
   // Quit Node
   const addQuitNode = useCallback(() => {
     const newQuitNodeId = 'Quit-' + uuidv4()
-    xPos.current += 400
+    const xPos = data.position.x + 200
+    const yPos = data.position.y
     const newQuitNode = {
       id: newQuitNodeId,
       position: {
-        x: xPos.current,
-        y: 250,
+        x: xPos,
+        y: yPos,
       },
       type: 'quit',
       data: {
         id: newQuitNodeId,
         type: 'Agama-quit-Node',
         parentId: data.id,
+        position: {
+          x: xPos,
+          y: yPos,
+        },
       },
     }
 
