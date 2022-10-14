@@ -62,24 +62,25 @@ export default function CustomizedMenus({ data }) {
   }
 
   // Node Menu generator
-  const xPos = useRef(0)
+  //const xPos = useRef(0)
   const flowInstance = useReactFlow()
 
   // Call Node
   const addCallNode = useCallback(() => {
     const newCallId = 'Call-' + uuidv4()
-    xPos.current += 400
+    const xPos = data.position.x + 200
     const newCallNode = {
       id: newCallId,
       position: {
-        x: xPos.current,
-        y: 250,
+        x: xPos,
+        y: data.position.y
       },
       type: 'call',
       data: {
         id: newCallId,
         type: 'Agama-call-Node',
         parentId: data.id,
+        position: { x: xPos, y: data.position.y },
       },
     }
     // edge
@@ -99,18 +100,19 @@ export default function CustomizedMenus({ data }) {
   // Trigger Node
   const addTriggerNode = useCallback(() => {
     const newTriggerNodeId = 'Trigger-' + uuidv4()
-    xPos.current += 400
+    const xPos = data.position.x + 200
     const newTriggerNode = {
       id: newTriggerNodeId,
       position: {
-        x: xPos.current,
-        y: 250,
+        x: xPos,
+        y: data.position.y
       },
       type: 'trigger',
       data: {
         id: newTriggerNodeId,
         type: 'Agama-trigger-Node',
         parentId: data.id,
+        position: { x: xPos, y: data.position.y },
       },
     }
 
@@ -130,18 +132,19 @@ export default function CustomizedMenus({ data }) {
   // RRF Node
   const addRrfNode = useCallback(() => {
     const newRrfId = 'RRF-' + uuidv4()
-    xPos.current += 400
+    const xPos = data.position.x + 200
     const newRrfNode = {
       id: newRrfId,
       position: {
-        x: xPos.current,
-        y: 250,
+        x: xPos,
+        y: data.position.y
       },
       type: 'rrf',
       data: {
         id: newRrfId,
         type: 'Agama-rrf-Node',
         parentId: data.id,
+        position: { x: xPos, y: data.position.y },
       },
     }
 
@@ -161,18 +164,19 @@ export default function CustomizedMenus({ data }) {
   // RFAC Node
   const addRfacNode = useCallback(() => {
     const newRfacNodeId = 'RFAC-' + uuidv4()
-    xPos.current += 400
+    const xPos = data.position.x + 200
     const newRfacNode = {
       id: newRfacNodeId,
       position: {
-        x: xPos.current,
-        y: 250,
+        x: xPos,
+        y: data.position.y
       },
       type: 'rfac',
       data: {
         id: newRfacNodeId,
         type: 'Agama-rfac-Node',
         parentId: data.id,
+        position: { x: xPos, y: data.position.y },
       },
     }
 
@@ -192,18 +196,19 @@ export default function CustomizedMenus({ data }) {
   // When Node
   const addWhenNode = useCallback(() => {
     const newWhenNodeId = 'When-' + uuidv4()
-    xPos.current += 400
+    const xPos = data.position.x + 200
     const newWhenNode = {
       id: newWhenNodeId,
       position: {
-        x: xPos.current,
-        y: 250,
+        x: xPos,
+        y: data.position.y
       },
       type: 'when',
       data: {
         id: newWhenNodeId,
         type: 'Agama-when-Node',
         parentId: data.id,
+        position: { x: xPos, y: data.position.y },
       },
     }
 
@@ -223,18 +228,19 @@ export default function CustomizedMenus({ data }) {
   // Repeat Node
   const addRepeatNode = useCallback(() => {
     const newRepeatNodeId = 'Repeat-' + uuidv4()
-    xPos.current += 400
+    const xPos = data.position.x + 200
     const newRepeatNode = {
       id: newRepeatNodeId,
       position: {
-        x: xPos.current,
-        y: 250,
+        x: xPos,
+        y: data.position.y
       },
       type: 'repeat',
       data: {
         id: newRepeatNodeId,
         type: 'Agama-repeat-Node',
         parentId: data.id,
+        position: { x: xPos, y: data.position.y },
       },
     }
 
@@ -254,18 +260,19 @@ export default function CustomizedMenus({ data }) {
   // Log Node
   const addLogNode = useCallback(() => {
     const newLogNodeId = 'Log-' + uuidv4()
-    xPos.current += 400
+    const xPos = data.position.x + 200
     const newLogNode = {
       id: newLogNodeId,
       position: {
-        x: xPos.current,
-        y: 250,
+        x: xPos,
+        y: data.position.y
       },
       type: 'log',
       data: {
         id: newLogNodeId,
         type: 'Agama-log-Node',
         parentId: data.id,
+        position: { x: xPos, y: data.position.y },
       },
     }
 
@@ -285,18 +292,19 @@ export default function CustomizedMenus({ data }) {
   // Finish Node
   const addFinishNode = useCallback(() => {
     const newFinishNodeId = 'Finish-' + uuidv4()
-    xPos.current += 400
+    const xPos = data.position.x + 200
     const newFinishNode = {
       id: newFinishNodeId,
       position: {
-        x: xPos.current,
-        y: 250,
+        x: xPos,
+        y: data.position.y
       },
       type: 'end',
       data: {
         id: newFinishNodeId,
         type: 'Agama-finish-Flow',
         parentId: data.id,
+        position: { x: xPos, y: data.position.y },
       },
     }
 
@@ -326,18 +334,19 @@ export default function CustomizedMenus({ data }) {
   // Quit Node
   const addQuitNode = useCallback(() => {
     const newQuitNodeId = 'Quit-' + uuidv4()
-    xPos.current += 400
+    const xPos = data.position.x + 200
     const newQuitNode = {
       id: newQuitNodeId,
       position: {
-        x: xPos.current,
-        y: 250,
+        x: xPos,
+        y: data.position.y
       },
       type: 'quit',
       data: {
         id: newQuitNodeId,
         type: 'Agama-quit-Node',
         parentId: data.id,
+        position: { x: xPos, y: data.position.y },
       },
     }
 

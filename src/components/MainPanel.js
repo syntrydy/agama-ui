@@ -40,14 +40,13 @@ const nodeTypes = {
 
 let id = 0
 const defaultViewport = { x: 10, y: 15, zoom: 1 }
-
 const initialNodeId = `start-${uuidv4()}`
 const initialNodes = [
   {
     id: initialNodeId,
     type: 'start',
     sourcePosition: 'right',
-    data: { id: initialNodeId, type: "Agama-start-Flow" },
+    data: { id: initialNodeId, type: "Agama-start-Flow", position: { x: 250, y: 250 }},
     position: { x: 250, y: 250 },
   },
 ]
